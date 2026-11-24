@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(R)-GABOB — Market Intelligence &amp; Feasibility Report</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding:0;display:flex;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a2e;background:#f0f2f5}
+.sidebar{width:260px;min-width:260px;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;background:#0d1b2a;z-index:100}
+.main-content{margin-left:260px;width:calc(100% - 260px);min-height:100vh;background:#f0f2f5}
+.sb-brand{padding:18px 16px 12px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-brand .logo{color:#4fc3f7;font-size:11px;font-weight:700;letter-spacing:1.4px}
+.sb-brand .sub{color:#78909c;font-size:9.5px;margin-top:4px;letter-spacing:.4px}
+.sb-meta{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-meta .pname{color:#fff;font-size:14px;font-weight:700;line-height:1.3}
+.sb-meta .prow{color:#90a4ae;font-size:10px;margin-top:6px;line-height:1.5}
+.sb-meta .prow b{color:#cfd8dc;font-weight:600}
+.sidebar-badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:10px;font-weight:600;margin:5px 4px 0 0}
+.badge-approved{background:#1b5e20;color:#a5d6a7;border:1px solid #388e3c}
+.badge-regulated{background:#1a237e;color:#90caf9;border:1px solid #3949ab}
+.badge-warning{background:#e65100;color:#ffe0b2;border:1px solid #ef6c00}
+.badge-mode{background:#01579b;color:#b3e5fc;border:1px solid #0288d1}
+.confidential-notice{margin:12px 10px 16px 10px;padding:10px 12px;background:rgba(255,193,7,.12);border:1px solid rgba(255,193,7,.35);border-radius:6px}
+.conf-title{color:#ffc107;font-size:10px;font-weight:700;letter-spacing:.5px;margin-bottom:5px}
+.conf-text{color:#b0bec5;font-size:9.5px;line-height:1.45}
+.nav-label{color:#546e7a;font-size:9px;font-weight:700;letter-spacing:1.2px;padding:12px 16px 6px 16px}
+.nav-link{display:block;padding:7px 16px;color:#b0bec5;text-decoration:none;font-size:11.5px;border-left:3px solid transparent;transition:.15s}
+.nav-link:hover{background:rgba(79,195,247,.08);color:#e1f5fe}
+.nav-link.active{background:rgba(79,195,247,.14);color:#4fc3f7;border-left-color:#4fc3f7;font-weight:600}
+.nav-num{display:inline-block;width:20px;color:#546e7a;font-size:10px;font-weight:700}
+.nav-link.active .nav-num{color:#4fc3f7}
+.pdf-wrap{padding:14px 12px 20px 12px;border-top:1px solid rgba(255,255,255,.08);margin-top:10px}
+.pdf-btn{display:block;width:100%;padding:11px;background:#1565c0;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.4px}
+.pdf-btn:hover{background:#1976d2}
+.hero{background:linear-gradient(135deg,#0d1b2a 0%,#13293d 55%,#1b3b5a 100%);color:#fff;padding:36px 40px 30px 40px}
+.hero .rtype{display:inline-block;background:rgba(255,193,7,.16);border:1px solid rgba(255,193,7,.4);color:#ffc107;font-size:10px;font-weight:700;letter-spacing:.8px;padding:5px 12px;border-radius:12px;margin-bottom:14px}
+.hero h1{margin:0 0 6px 0;font-size:30px;line-height:1.2;font-weight:700}
+.hero .syn{color:#90caf9;font-size:12.5px;margin-bottom:14px}
+.chips span{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#cfd8dc;font-size:10.5px;padding:4px 10px;border-radius:11px;margin:0 6px 6px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:20px}
+.kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:13px 14px}
+.kpi .k{color:#78909c;font-size:9px;font-weight:700;letter-spacing:.9px;margin-bottom:6px}
+.kpi .v{color:#fff;font-size:17px;font-weight:700;line-height:1.2}
+.kpi .n{color:#90a4ae;font-size:9.5px;margin-top:4px;line-height:1.4}
+.wrap{padding:26px 40px 50px 40px}
+.report-section{margin-bottom:34px;scroll-margin-top:12px}
+.sec-head{display:flex;align-items:center;gap:12px;margin:0 0 14px 0}
+.sec-num{background:#1565c0;color:#fff;width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex:0 0 34px}
+.sec-head h2{margin:0;font-size:18px;font-weight:700;color:#0d1b2a;letter-spacing:-.2px}
+.card{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:18px 20px;margin-bottom:14px}
+.card h3{margin:0 0 10px 0;font-size:13.5px;color:#1565c0;font-weight:700;letter-spacing:.2px}
+.card h4{margin:14px 0 8px 0;font-size:12px;color:#37474f;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.card p{margin:0 0 10px 0;font-size:12.5px;line-height:1.65;color:#2e3b45}
+.card p:last-child{margin-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin:8px 0}
+th{background:#1565c0;color:#fff;text-align:left;padding:8px 10px;font-weight:600;font-size:10.5px;letter-spacing:.3px;border:1px solid #1565c0}
+td{padding:7px 10px;border:1px solid #e3e7ea;vertical-align:top;line-height:1.5}
+tbody tr:nth-child(even){background:#f7fafc}
+tbody tr:hover{background:#eef6fd}
+tr.india td{background:#fff8e1!important;border-left:3px solid #f9a825}
+tr.india:hover td{background:#fff3cd!important}
+a{color:#1565c0;word-break:break-word}
+.src{font-size:9.5px;color:#607d8b}
+.tag{display:inline-block;padding:2px 7px;border-radius:9px;font-size:9.5px;font-weight:700;white-space:nowrap}
+.t-hi{background:#ffebee;color:#b71c1c}
+.t-md{background:#fff3e0;color:#e65100}
+.t-lo{background:#e8f5e9;color:#1b5e20}
+.t-nb{background:#e3f2fd;color:#0d47a1}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px}
+.pcard{background:#f7fafc;border:1px solid #e3e7ea;border-left:3px solid #1565c0;border-radius:6px;padding:10px 12px}
+.pcard .pk{font-size:9px;color:#607d8b;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.pcard .pv{font-size:12.5px;color:#0d1b2a;font-weight:600;margin-top:4px;line-height:1.4}
+.alert{border-radius:8px;padding:12px 15px;font-size:12px;line-height:1.6;margin:10px 0}
+.a-info{background:#e3f2fd;border-left:4px solid #1565c0;color:#0d47a1}
+.a-warn{background:#fff8e1;border-left:4px solid #f9a825;color:#8d6e00}
+.a-ok{background:#e8f5e9;border-left:4px solid #2e7d32;color:#1b5e20}
+.a-bad{background:#ffebee;border-left:4px solid #c62828;color:#8e1515}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sq{border-radius:9px;padding:14px 16px;color:#fff}
+.sq h5{margin:0 0 8px 0;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.sq ul{margin:0;padding-left:16px;font-size:11.5px;line-height:1.6}
+.sq-s{background:#1b5e20}.sq-w{background:#b71c1c}.sq-o{background:#1565c0}.sq-t{background:#e65100}
+.forces{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:11px}
+.force{background:#fff;border:1px solid #e3e7ea;border-top:4px solid #1565c0;border-radius:8px;padding:12px 14px}
+.force.hi{border-top-color:#c62828}.force.md{border-top-color:#ef6c00}.force.lo{border-top-color:#2e7d32}
+.force .fn{font-size:11.5px;font-weight:700;color:#0d1b2a;margin-bottom:5px}
+.force .ft{font-size:11.5px;color:#455a64;line-height:1.55;margin-top:6px}
+.vchain{display:flex;flex-wrap:wrap;gap:7px;align-items:stretch;margin:10px 0}
+.vstep{flex:1 1 110px;background:#eceff1;border:1px dashed #b0bec5;border-radius:7px;padding:10px 8px;text-align:center;font-size:10.5px;color:#607d8b;font-weight:600}
+.vstep.on{background:#1565c0;border:1px solid #1565c0;color:#fff}
+.steps{counter-reset:st;list-style:none;padding:0;margin:6px 0 0 0}
+.steps li{counter-increment:st;position:relative;padding:0 0 14px 44px;font-size:12.5px;line-height:1.6;border-left:2px solid #e3e7ea;margin-left:14px}
+.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps li::before{content:counter(st);position:absolute;left:-15px;top:-2px;width:28px;height:28px;background:#1565c0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700}
+.steps li b{color:#0d1b2a}
+.verdict{border-radius:10px;padding:20px 24px;color:#fff;background:#e65100;margin-bottom:14px}
+.verdict .vt{font-size:11px;letter-spacing:1.4px;font-weight:700;opacity:.9}
+.verdict .vv{font-size:24px;font-weight:700;margin:5px 0 8px 0}
+.verdict .vd{font-size:12.5px;line-height:1.65}
+.refs{counter-reset:rf;list-style:none;padding:0;margin:0}
+.refs li{counter-increment:rf;position:relative;padding:6px 0 6px 34px;font-size:11px;line-height:1.55;border-bottom:1px solid #eceff1;color:#37474f}
+.refs li::before{content:"[" counter(rf) "]";position:absolute;left:0;top:6px;color:#1565c0;font-weight:700;font-size:10.5px}
+footer{background:#0d1b2a;color:#90a4ae;padding:26px 40px;font-size:11px;line-height:1.7}
+footer b{color:#cfd8dc}
+@media print{
+ *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .sidebar{display:none}
+ .main-content{margin-left:0;width:100%}
+ .report-section{page-break-inside:avoid}
+ .wrap{padding:14px 18px}
+ .hero{padding:20px 18px}
+ a{text-decoration:none}
+}
+</style>
+</head>
+<body>
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="logo">MARKET INTELLIGENCE</div>
+    <div class="sub">FEASIBILITY &amp; ENTRY ASSESSMENT</div>
+  </div>
+  <div class="sb-meta">
+    <div class="pname">(R)-GABOB</div>
+    <div class="prow"><b>&gamma;-Amino-&beta;-hydroxybutyric acid, (R) form</b></div>
+    <div class="prow">CAS <b>7013-07-2</b><br>Racemate CAS <b>924-49-2</b><br>Report date <b>November 2026</b></div>
+    <span class="sidebar-badge badge-mode">MODE A &mdash; SECONDARY</span>
+    <span class="sidebar-badge badge-warning">CONDITIONAL</span>
+    <span class="sidebar-badge badge-regulated">RX API (RACEMATE)</span>
+    <span class="sidebar-badge badge-approved">NOT SCHEDULED</span>
+  </div>
+  <div class="confidential-notice">
+    <div class="conf-title">&#128274; CONFIDENTIAL</div>
+    <div class="conf-text">For Internal Management Use Only. Based on publicly available secondary research. Market size estimates from third-party sources may vary. Not investment or financial advice.</div>
+  </div>
+  <div class="nav-label">REPORT SECTIONS</div>
+  <a href="#s01" class="nav-link" data-section="s01"><span class="nav-num">01</span> Product Overview</a>
+  <a href="#s02" class="nav-link" data-section="s02"><span class="nav-num">02</span> Synthesis &amp; Manufacturing</a>
+  <a href="#s03" class="nav-link" data-section="s03"><span class="nav-num">03</span> Applications &amp; End-Products</a>
+  <a href="#s04" class="nav-link" data-section="s04"><span class="nav-num">04</span> Market Analysis</a>
+  <a href="#s05" class="nav-link" data-section="s05"><span class="nav-num">05</span> News &amp; Intelligence</a>
+  <a href="#s06" class="nav-link" data-section="s06"><span class="nav-num">06</span> Pricing Intelligence</a>
+  <a href="#s07" class="nav-link" data-section="s07"><span class="nav-num">07</span> Regulatory &amp; Compliance</a>
+  <a href="#s08" class="nav-link" data-section="s08"><span class="nav-num">08</span> Target Customers</a>
+  <a href="#s09" class="nav-link" data-section="s09"><span class="nav-num">09</span> Strategic Frameworks</a>
+  <a href="#s10" class="nav-link" data-section="s10"><span class="nav-num">10</span> Feasibility &amp; Verdict</a>
+  <div class="nav-label">APPENDIX</div>
+  <a href="#sref" class="nav-link" data-section="sref"><span class="nav-num">&#9733;</span> Sources &amp; References</a>
+  <a href="#sqa" class="nav-link" data-section="sqa"><span class="nav-num">&#9888;</span> Data-Quality Flags</a>
+  <div class="pdf-wrap">
+    <button class="pdf-btn" onclick="window.print()">&#11015; Download PDF</button>
+  </div>
+</nav>
+<main class="main-content">
+<header class="hero">
+  <div class="rtype">REPORT TYPE: SECONDARY MARKET RESEARCH &mdash; NO TRADE DATA</div>
+  <h1>&gamma;-Amino-&beta;-hydroxybutyric Acid (GABOB) &mdash; (R) Form</h1>
+  <div class="syn">(R)-(&ndash;)-4-Amino-3-hydroxybutanoic acid &middot; (R)-GABOB &middot; (R)-(&ndash;)-3-Hydroxy-GABA &middot; L-&gamma;-Amino-&beta;-hydroxybutyric acid &middot; CAS 7013-07-2</div>
+  <div class="chips">
+    <span>C<sub>4</sub>H<sub>9</sub>NO<sub>3</sub> &middot; MW 119.12</span>
+    <span>Chiral GABA analogue</span>
+    <span>(R)-Carnitine precursor</span>
+    <span>Oxiracetam / 4-hydroxy-2-pyrrolidinone route</span>
+    <span>Research-scale merchant market</span>
+    <span>India: 100% import-dependent</span>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="k">OVERALL VERDICT</div><div class="v">CONDITIONAL</div><div class="n">Sourcing &amp; CRO yes; manufacturing no</div></div>
+    <div class="kpi"><div class="k">(R) MERCHANT MARKET (MI EST.)</div><div class="v">&lt; US$1 M/yr</div><div class="n">Low confidence &mdash; no published report exists for this isomer</div></div>
+    <div class="kpi"><div class="k">ANCHOR MARKET &mdash; L-CARNITINE</div><div class="v">US$239 M (2025)</div><div class="n">6.6% CAGR to US$425 M by 2034</div></div>
+    <div class="kpi"><div class="k">ANCHOR MARKET &mdash; OXIRACETAM</div><div class="v">US$187 M (2026)</div><div class="n">6.8% CAGR to US$339 M by 2035</div></div>
+    <div class="kpi"><div class="k">RESEARCH-SCALE PRICE</div><div class="v">US$65&ndash;83/g</div><div class="n">(R) isomer, 95&ndash;97%; racemate ~US$3.4/g at 5 g</div></div>
+    <div class="kpi"><div class="k">INDIA IMPORT DUTY STACK</div><div class="v">&asymp; 27.7%</div><div class="n">ITC-HS 29225090: BCD 7.5 + SWS 0.75 + IGST 18</div></div>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="s01" class="report-section">
+  <div class="sec-head"><div class="sec-num">01</div><h2>Product Overview &amp; Identity</h2></div>
+  <div class="card">
+    <h3>What it is &mdash; and why the stereochemistry decides the business case</h3>
+    <p>GABOB (&gamma;-amino-&beta;-hydroxybutyric acid, also written &beta;-hydroxy-GABA) is the 3-hydroxylated analogue of the neurotransmitter GABA and an endogenous GABA metabolite. It is an old, small-volume anticonvulsant marketed in Italy, Japan and Mexico under the brand <b>Gamibetal</b> and generic name <i>buxamine / buxamina</i> (<a href="https://en.wikipedia.org/wiki/%CE%93-Amino-%CE%B2-hydroxybutyric_acid" target="_blank">Wikipedia / Index Nominum 2000</a>).</p>
+    <p><b>The commercially critical fact for management: the drug is sold as the racemate, not as the (R) enantiomer.</b> Pharmacologically, (R)-(&ndash;)-GABOB is a moderate-potency GABA<sub>B</sub> agonist while (S)-(+)-GABOB is a GABA<sub>B</sub> partial agonist and a GABA<sub>A</sub> agonist &mdash; and the (S) form is roughly twice as potent an anticonvulsant as the (R) form. The (R) isomer therefore has <i>no</i> standalone pharmaceutical franchise. Its commercial identity is that of a <b>chiral C4 building block</b>: a declared precursor to <b>(R)-carnitine (L-carnitine)</b> and a classical starting material for <b>4-hydroxy-2-pyrrolidinone &rarr; oxiracetam</b> (<a href="https://patents.justia.com/patent/7374926" target="_blank">US 7,374,926, CSIR</a>; <a href="https://data.epo.org/publication-server/rest/v1.2/patents/EP0829472NWA1/document.pdf" target="_blank">EP 0 829 472 A1</a>).</p>
+    <p>Secondary demand exists as a <b>neuroscience research reagent</b> &mdash; it is a GABA<sub>C</sub> receptor agonist (EC<sub>50</sub> 19 &micro;M at the human receptor in Xenopus oocyte patch-clamp) and a GABA-reuptake blocker in rat brain synaptosomes (<a href="https://www.caymanchem.com/product/31532/r-4-amino-3-hydroxybutyric-acid" target="_blank">Cayman Chemical 31532</a>; <a href="https://www.targetmol.com/compound/_r_4_amino_3_hydroxybutyric_acid" target="_blank">TargetMol T85014</a>) &mdash; and as an intermediate for isotope-labelled carnitine reference standards such as stearoyl-L-carnitine-<sup>13</sup>C<sub>3</sub> chloride (<a href="https://amp.chemicalbook.com/ChemicalProductProperty_EN_CB6734941.htm" target="_blank">ChemicalBook CB6734941</a>).</p>
+  </div>
+  <div class="card">
+    <h3>1A &mdash; Chemical Identity</h3>
+    <table>
+      <thead><tr><th style="width:24%">Property</th><th style="width:40%">Value</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>IUPAC name</td><td>(3R)-4-amino-3-hydroxybutanoic acid</td><td class="src"><a href="https://www.caymanchem.com/product/31532" target="_blank">caymanchem.com/product/31532</a></td></tr>
+        <tr><td>CAS &mdash; (R) isomer</td><td><b>7013-07-2</b></td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">chemicalbook.com/CASEN_7013-07-2</a></td></tr>
+        <tr><td>CAS &mdash; racemate (DL)</td><td>924-49-2 (EINECS 213-106-9)</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_924-49-2.htm" target="_blank">chemicalbook.com/CASEN_924-49-2</a></td></tr>
+        <tr><td>CAS &mdash; other registry in use</td><td>352-21-6 (listed against GABOB by KEGG; isomer assignment <b>not verified</b> &mdash; see Data-Quality Flags)</td><td class="src"><a href="https://www.kegg.jp/entry/C03678" target="_blank">kegg.jp/entry/C03678</a></td></tr>
+        <tr><td>Molecular formula</td><td>C<sub>4</sub>H<sub>9</sub>NO<sub>3</sub></td><td class="src"><a href="https://www.kegg.jp/entry/C03678" target="_blank">KEGG C03678</a></td></tr>
+        <tr><td>Molecular weight</td><td>119.12 g/mol (exact mass 119.0582)</td><td class="src"><a href="https://www.kegg.jp/entry/C03678" target="_blank">KEGG C03678</a></td></tr>
+        <tr><td>SMILES (R)</td><td>NC[C@H](O)CC(=O)O</td><td class="src"><a href="https://ebc.enamine.net/molecule-product/EBC-04387" target="_blank">Enamine EBC-04387</a></td></tr>
+        <tr><td>InChIKey &mdash; (R)</td><td>YQGDEPYYFWUPGO-GSVOUGTGSA-N</td><td class="src"><a href="https://amp.chemicalbook.com/ProductChemicalPropertiesCB6734941_EN.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>InChIKey &mdash; racemate</td><td>YQGDEPYYFWUPGO-UHFFFAOYSA-N</td><td class="src"><a href="https://www.ebi.ac.uk/chebi/CHEBI:16080" target="_blank">ChEBI 16080</a></td></tr>
+        <tr><td>PubChem CID</td><td>2149 (racemate); 6453 (KEGG-linked entry)</td><td class="src"><a href="https://www.fishersci.com/shop/products/4-amino-3-hydroxybutyric-acid-tci-america-2/A03185G" target="_blank">Fisher / TCI A0318</a></td></tr>
+        <tr><td>ChEBI</td><td>CHEBI:16080 (&gamma;-amino-&beta;-hydroxybutyric acid)</td><td class="src"><a href="https://www.ebi.ac.uk/chebi/CHEBI:16080" target="_blank">ebi.ac.uk/chebi/CHEBI:16080</a></td></tr>
+        <tr><td>KEGG</td><td>Compound C03678; Drug D00174</td><td class="src"><a href="https://www.kegg.jp/entry/C03678" target="_blank">kegg.jp/entry/C03678</a></td></tr>
+        <tr><td>FDA UNII</td><td>1ZHM019FLD (racemate)</td><td class="src"><a href="https://pharmacompass.com/price/4-amino-3-hydroxybutyric-acid" target="_blank">PharmaCompass</a></td></tr>
+        <tr><td>ECHA InfoCard</td><td>100.011.916</td><td class="src"><a href="https://www.wikiwand.com/en/articles/GABOB" target="_blank">Wikiwand / Wikidata</a></td></tr>
+        <tr><td>MDL numbers</td><td>MFCD02262047 (R); MFCD00008141 (racemate)</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>Reaxys / RTECS</td><td>Reaxys 1721708; RTECS ES7015000</td><td class="src"><a href="https://www.tcichemicals.com/US/en/p/A0318" target="_blank">TCI A0318</a></td></tr>
+        <tr><td>Key synonyms (R)</td><td>(R)-GABOB; R-(&ndash;)-&gamma;-amino-&beta;-hydroxybutyric acid; (&ndash;)-&beta;-hydroxy-GABA; (R)-(&ndash;)-3-hydroxy-GABA; L-&gamma;-amino-&beta;-hydroxybutyric acid; (R)-3-hydroxy-4-aminobutyric acid</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>Drug synonyms (racemate)</td><td>Gamibetal, Buxamine/Buxamina, Bogil, Gaboril, Gaminal, Gabomade, Gabimex, Aminoxan, Diastal, Gamalate, Kolpo</td><td class="src"><a href="https://www.wikiwand.com/en/articles/GABOB" target="_blank">Wikiwand</a> / <a href="https://www.chemicalbook.com/CASEN_924-49-2.htm" target="_blank">ChemicalBook</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>1B &mdash; Physical &amp; Chemical Properties</h3>
+    <table>
+      <thead><tr><th style="width:24%">Property</th><th style="width:40%">Value</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Appearance / physical state</td><td>Crystalline solid (white), solid at 20 &deg;C</td><td class="src"><a href="https://cdn.caymanchem.com/cdn/insert/31532.pdf" target="_blank">Cayman product insert 31532</a>; <a href="https://www.tcichemicals.com/US/en/p/A0318" target="_blank">TCI A0318</a></td></tr>
+        <tr><td>Melting point</td><td>216&ndash;217 &deg;C (decomposition; from water/ethanol)</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>Boiling point</td><td>374.5 &plusmn; 32.0 &deg;C (<b>predicted</b> &mdash; decomposes before boiling)</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>Density</td><td>1.312 &plusmn; 0.06 g/cm&sup3; (<b>predicted</b>)</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>pKa</td><td>4.04 &plusmn; 0.10 (<b>predicted</b>) &mdash; zwitterionic amino acid</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>LogP</td><td>&ndash;1.730 (estimated) &mdash; highly hydrophilic</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_924-49-2.htm" target="_blank">ChemicalBook (racemate)</a></td></tr>
+        <tr><td>Solubility</td><td>Water/aqueous buffer soluble; PBS pH 7.2 at 10 mg/mL. Dissolves directly in aqueous buffers</td><td class="src"><a href="https://www.caymanchem.com/product/31532" target="_blank">Cayman 31532</a></td></tr>
+        <tr><td>Flash point</td><td>Not reported for this substance (non-flammable solid; no vendor value located)</td><td class="src">MI note &mdash; data not publicly available</td></tr>
+        <tr><td>Vapour pressure</td><td>Not reported; negligible expected for a zwitterionic solid of mp &gt;215 &deg;C</td><td class="src">MI note &mdash; data not publicly available</td></tr>
+        <tr><td>Stability / shelf life</td><td>&ge; 4 years as supplied (Cayman)</td><td class="src"><a href="https://cdn.caymanchem.com/cdn/insert/31532.pdf" target="_blank">Cayman insert</a></td></tr>
+        <tr><td>Storage conditions</td><td><b>Vendor conflict:</b> &ndash;20 &deg;C (Cayman) vs room temperature, cool &amp; dark &lt;15 &deg;C (TCI) vs dark place, inert atmosphere, RT (ChemicalBook). Use the strictest for import planning</td><td class="src"><a href="https://cdn.caymanchem.com/cdn/insert/31532.pdf" target="_blank">Cayman</a>; <a href="https://www.tcichemicals.com/US/en/p/A0318" target="_blank">TCI</a>; <a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a></td></tr>
+        <tr><td>GHS classification</td><td>GHS07, Signal word <i>Warning</i>; H315 (skin irritation), H319 (eye irritation), H335 (may cause respiratory irritation). P264, P280, P305+P351+P338, P337+P313</td><td class="src"><a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">ChemicalBook</a>; <a href="https://www.lookchem.com/sds924-49-2.html" target="_blank">LookChem SDS</a></td></tr>
+        <tr><td>Research-use caveat</td><td>Research-grade material labelled &ldquo;not for human or veterinary use&rdquo;; Cayman advises treating as hazardous until further data emerge</td><td class="src"><a href="https://cdn.caymanchem.com/cdn/insert/31532.pdf" target="_blank">Cayman insert</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>1C &mdash; Grades Available in the Market</h3>
+    <table>
+      <thead><tr><th>Grade</th><th>Purity</th><th>Primary use</th><th>Typical pack / supplier</th></tr></thead>
+      <tbody>
+        <tr><td>(R) research / reference grade</td><td>&ge;95% (HPLC)</td><td>Neuroscience pharmacology, GABA-receptor work</td><td>10&ndash;250 mg &mdash; Cayman, TargetMol, Biomol, Enamine EBC</td></tr>
+        <tr><td>(R) synthesis / building-block grade</td><td>95&ndash;97%</td><td>Chiral synthon for carnitine &amp; pyrrolidinone chemistry</td><td>1&ndash;25 g &mdash; aablocks, ACHEMBLOCK, Ambeed, Biosynth Carbosynth</td></tr>
+        <tr><td>(R) &ldquo;pharmaceutical grade&rdquo; (vendor claim)</td><td>96&ndash;99%</td><td>Scale-up / process development feed</td><td>100 g&ndash;100 kg &mdash; Capot, Shanghai Daken, Conier, LEAP Chem (China traders; claims unverified)</td></tr>
+        <tr><td>Racemate (DL) technical/API grade</td><td>&gt;98% to 99.99% claimed</td><td>Marketed anticonvulsant API; cheap feed for resolution routes</td><td>5 g&ndash;25 kg drum &mdash; TCI, Thermo, INDOFINE, Amity Chem</td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-warn"><b>Sourcing alert:</b> every kilogram-scale (R) offer located is a Chinese <i>trader</i> listing, not a verified manufacturer with a disclosed plant. Treat kg availability and purity claims as unconfirmed until a sample plus full CoA, chiral-HPLC ee data and a site audit are obtained.</div>
+  </div>
+  <div class="card">
+    <h3>1D &mdash; HS Codes</h3>
+    <table>
+      <thead><tr><th>Jurisdiction</th><th>Code</th><th>Description &amp; duty</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr class="india"><td>&#127470;&#127475; India (ITC-HS)</td><td><b>2922.50.90</b></td><td>Amino-alcohol-phenols, amino-acid-phenols &amp; other amino-compounds with oxygen function &mdash; Other. BCD 7.5% + SWS 0.75% + IGST 18% = <b>&asymp;27.735%</b> total. Import policy: Free</td><td class="src"><a href="https://treayo.com/en/hs/india/29225090" target="_blank">treayo.com/en/hs/india/29225090</a></td></tr>
+        <tr class="india"><td>&#127470;&#127475; India &mdash; alternate reading</td><td>2922.49.90</td><td>Oxygen-function amino-compounds, &gt;1 kind of oxygen function &mdash; Other. BCD 7.5% + IGST 18% = <b>&asymp;28.47%</b>. Used when the classifier treats it as an amino-acid rather than amino-alcohol</td><td class="src"><a href="https://eximpe.com/hsncode-finder/29224990" target="_blank">eximpe.com/hsncode-finder/29224990</a></td></tr>
+        <tr><td>&#127466;&#127482; EU (TCI declaration)</td><td>2922.50.00.90</td><td>Declared by TCI for the racemate on EU shipments</td><td class="src"><a href="https://tcichemicals.com/CH/en/p/A0318" target="_blank">TCI CH A0318</a></td></tr>
+        <tr><td>&#127482;&#127480; USA (HTS, vendor-declared)</td><td>2922.49.4950</td><td>TCI declares the racemate under 2922.49 in the US; Thermo Scientific declares 2922.50</td><td class="src"><a href="https://www.tcichemicals.com/CA/en/p/A0318" target="_blank">TCI CA</a>; <a href="https://thomassci.com/nav/casnumber/924492/categories/supplies/0" target="_blank">Thomas Sci</a></td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-info"><b>Customs alert:</b> vendors themselves split between 2922.49 and 2922.50 for the same molecule. Before the first commercial import, obtain a written <b>CAAR advance ruling</b> (Customs Authority for Advance Rulings) or at minimum a classification opinion, because the two readings differ in duty by ~0.7 percentage points and, more importantly, a later reclassification triggers differential duty with interest on all past consignments.</div>
+  </div>
+</section>
+<section id="s02" class="report-section">
+  <div class="sec-head"><div class="sec-num">02</div><h2>Synthesis &amp; Manufacturing</h2></div>
+  <div class="alert a-info"><b>Scope note:</b> this section maps <i>route families, IP ownership and manufacturing economics</i> at the level management needs to judge make-vs-buy. It deliberately does not reproduce reaction conditions, charge ratios or yields. GABOB is a prescription CNS-active drug substance; detailed process recipes belong in a controlled internal process-development document, drawn by our chemists from the primary patents and papers cited below, under the usual R&amp;D governance.</div>
+  <div class="card">
+    <h3>2A &mdash; Route Families</h3>
+    <p>Despite the molecule&rsquo;s structural simplicity, the literature on enantioselective GABOB preparation is unusually large &mdash; a signal that <b>no single route is clearly dominant on cost</b>. US 7,816,119 states plainly that numerous methods for the enantioselective preparation of GABOB and carnitine are described in the literature. The four recognised families are summarised below.</p>
+    <table>
+      <thead><tr><th style="width:5%">#</th><th style="width:22%">Route family</th><th>Character &amp; industrial relevance</th><th style="width:26%">Primary reference</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>Classical optical resolution</b> of racemic GABOB <span class="tag t-nb">lowest tech barrier</span></td><td>Resolving agent used in near-equimolar amount; unwanted enantiomer separated. Attractive <i>only</i> because the racemate is extremely cheap (see Section 06). Structural penalty: 50% theoretical yield unless the (S) stream is racemised and recycled, plus resolving-agent cost and recovery. Same economic objection that drove the carnitine industry away from resolution</td><td class="src"><a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6566552" target="_blank">US 6,566,552 (background on L-carnitine resolution economics)</a></td></tr>
+        <tr><td>2</td><td><b>Asymmetric synthesis from natural chiral pool</b></td><td>Builds the (R) centre from a natural-product-derived chiral precursor. Avoids resolution losses; constrained by precursor cost and chain-length matching to a C4 target</td><td class="src"><a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7374926" target="_blank">US 7,374,926 (prior-art survey)</a></td></tr>
+        <tr><td>3</td><td><b>Catalytic asymmetric synthesis</b> <span class="tag t-md">catalyst-dependent</span></td><td>Asymmetric reduction or asymmetric epoxidation approaches, closely related to the ruthenium-catalysed asymmetric reduction platform used industrially for L-carnitine. Asymmetric epoxidation of homoallylic alcohols to reach (R)-GABOB is documented from 1984. Needs chiral-ligand supply, pressure capability and catalyst-recovery economics</td><td class="src"><a href="https://www.osti.gov/biblio/873220" target="_blank">OSTI 873220 (route bibliography)</a>; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6566552" target="_blank">US 6,566,552</a></td></tr>
+        <tr><td>4</td><td><b>Chemoenzymatic / biocatalytic</b> <span class="tag t-lo">most current</span></td><td>An enzyme performs the single enantioselective step. CSIR (India) holds two grants in this family: an <b>enantioconvergent</b> chemoenzymatic process to (R)-GABOB (so both antipodes of the racemic intermediate converge on one product, defeating the 50%-yield ceiling), and a lipase-mediated kinetic resolution of a tosyloxybutanenitrile intermediate that serves <b>both (R)-GABOB and (R)-carnitine</b> from one chiral building block. Adjacent and commercially proven: engineered halohydrin dehalogenases (HHDH) producing ethyl (R)-4-cyano-3-hydroxybutanoate at industrial scale &mdash; the same C4 hydroxy-nitrile chemistry, already de-risked by the atorvastatin side-chain industry</td><td class="src"><a href="https://patents.justia.com/patent/7374926" target="_blank">US 7,374,926</a>; <a href="https://patents.google.com/patent/US7816119" target="_blank">US 7,816,119</a>; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6114566" target="_blank">US 6,114,566</a>; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5292711/" target="_blank">Sci Rep 2017, 10.1038/srep42064</a></td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-ok"><b>Strategic read &mdash; India angle:</b> the two most India-relevant process patents in this space are <b>CSIR-owned</b> (US 7,374,926 and US 7,816,119), both describing chemoenzymatic routes that deliver <i>(R)-GABOB and (R)-carnitine from a shared chiral intermediate</i>. If management ever revisits manufacturing, the correct first move is not a greenfield process but a <b>technology-transfer / licensing discussion with CSIR laboratories</b>, bundled with a toll-manufacturing partner that already runs lipase or HHDH biocatalysis. That converts a weak standalone product into a shared-intermediate play across two end markets.</div>
+  </div>
+  <div class="card">
+    <h3>2B &mdash; Key Raw Materials &amp; Input Availability</h3>
+    <table>
+      <thead><tr><th style="width:26%">Material / input</th><th style="width:20%">India availability</th><th>Relevance</th></tr></thead>
+      <tbody>
+        <tr class="india"><td>Racemic GABOB (CAS 924-49-2)</td><td><span class="tag t-lo">Importable, cheap</span> &mdash; TCI lists in India; Chinese drum-scale supply exists</td><td>Feed for resolution route 1. At ~US$3.4/g in 5 g packs and far less in bulk, the racemate is the cheapest possible entry point to (R) material</td></tr>
+        <tr class="india"><td>C4 halohydrin / epichlorohydrin derivatives (4-halo-3-hydroxybutyronitrile family)</td><td><span class="tag t-lo">Strong</span> &mdash; well-established Indian chlorohydrin and epoxide trade</td><td>Backbone of routes 3&ndash;4 and of the industrial carnitine platform</td></tr>
+        <tr class="india"><td>Glycine</td><td><span class="tag t-lo">Strong</span> &mdash; multiple Indian producers</td><td>Used in non-GABOB oxiracetam routes; relevant as a competitive-threat input (see 2D)</td></tr>
+        <tr class="india"><td>Lipase / HHDH biocatalysts</td><td><span class="tag t-md">Import-dependent</span> &mdash; enzyme supply from Codexis-type licensors or Chinese enzyme houses</td><td>Enabling input for route 4. Engineered HHDH IP is held offshore (<a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8580555" target="_blank">US 8,580,555</a>, <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8187856" target="_blank">US 8,187,856</a>)</td></tr>
+        <tr><td>Chiral resolving agents</td><td><span class="tag t-md">Mixed</span> &mdash; common agents available, specialised ones imported</td><td>Route 1 consumable; recovery loop determines whether route 1 is viable at all</td></tr>
+        <tr><td>Chiral HPLC columns &amp; standards</td><td><span class="tag t-lo">Available</span> &mdash; Daicel Chiral Technologies has an Indian entity</td><td>Mandatory QC infrastructure: without validated ee determination there is no sellable (R) product</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>2C &mdash; Manufacturing Complexity Assessment</h3>
+    <div class="pgrid">
+      <div class="pcard"><div class="pk">Complexity rating</div><div class="pv">MEDIUM&ndash;HIGH</div></div>
+      <div class="pcard"><div class="pk">Key challenge</div><div class="pv">Enantiocontrol at a single stereocentre on a tiny, highly water-soluble zwitterion</div></div>
+      <div class="pcard"><div class="pk">Isolation difficulty</div><div class="pv">HIGH &mdash; amino-acid zwitterion; ion-exchange / crystallisation work-up, high water load</div></div>
+      <div class="pcard"><div class="pk">Catalyst / enzyme dependency</div><div class="pv">HIGH for routes 3&ndash;4 &mdash; licensed biocatalyst or chiral ligand required</div></div>
+      <div class="pcard"><div class="pk">Temperature sensitivity</div><div class="pv">MODERATE &mdash; decomposes at mp (216&ndash;217 &deg;C); no high-temperature distillation possible</div></div>
+      <div class="pcard"><div class="pk">Analytical burden</div><div class="pv">HIGH &mdash; ee by chiral HPLC on an underivatised polar amino acid is non-trivial</div></div>
+      <div class="pcard"><div class="pk">Minimum viable scale (MI est.)</div><div class="pv">No anchor customer below ~1&ndash;5 MT/yr captive pull</div></div>
+      <div class="pcard"><div class="pk">IP position</div><div class="pv">Core patents expired/expiring; freedom to operate likely, but no proprietary advantage either</div></div>
+    </div>
+    <div class="alert a-bad"><b>Manufacturing verdict:</b> the chemistry is doable and the IP is largely free, but the merchant market for the (R) isomer is a few hundred kilograms at most, worldwide. A dedicated plant would be chasing a market smaller than its own depreciation. See Section 10.</div>
+  </div>
+  <div class="card">
+    <h3>2D &mdash; The Decisive Competitive Threat: the Industry Designed GABOB <i>Out</i></h3>
+    <p>This is the single most important finding in the report and it must sit in front of any manufacturing proposal. The patent record shows a deliberate, decades-long effort by downstream producers to <b>stop using GABOB as a starting material</b>:</p>
+    <table>
+      <thead><tr><th style="width:28%">Evidence</th><th>What it says</th><th style="width:22%">Reference</th></tr></thead>
+      <tbody>
+        <tr><td>Original oxiracetam routes</td><td>The known processes to 2-oxo-1-pyrrolidineacetamide derivatives <i>started from</i> &gamma;-amino-&beta;-hydroxybutyric acid and required several steps including silylation-type protection</td><td class="src"><a href="https://data.epo.org/publication-server/rest/v1.2/patents/EP0154490NWB1/document.xml" target="_blank">EP 0 154 490 B1</a>, citing GB 1588074 / GB 1588075</td></tr>
+        <tr><td>Explicit displacement motive</td><td>The stated aim was an alternative route to oxiracetam using <b>different starting materials available at economically interesting costs</b> &mdash; i.e. GABOB was judged too expensive</td><td class="src"><a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4629797" target="_blank">US 4,629,797</a></td></tr>
+        <tr><td>Replacement chemistry commercialised</td><td>Later processes build 4-hydroxy-2-oxopyrrolidin-1-yl-acetamide from a 4-halo-3-alkoxybutenoate ester plus glycine &mdash; no GABOB anywhere in the chain &mdash; expressly to be suitable for industrial scale</td><td class="src"><a href="https://patents.google.com/patent/US5371237" target="_blank">US 5,371,237</a>; <a href="https://patents.google.com/patent/US5276164A/enExample" target="_blank">US 5,276,164</a></td></tr>
+        <tr><td>Same story for the pyrrolidone intermediate</td><td>EP 0 829 472 lists the GABOB-based and optically-active-GABOB-based processes to 4-hydroxy-2-pyrrolidone among the <i>prior</i> methods it sets out to improve on</td><td class="src"><a href="https://data.epo.org/publication-server/rest/v1.2/patents/EP0829472NWA1/document.pdf" target="_blank">EP 0 829 472 A1</a></td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-warn"><b>Read this as a demand ceiling, not a technical footnote.</b> GABOB&rsquo;s largest historical downstream use &mdash; oxiracetam &mdash; has been engineered away from it on cost grounds. The same applies in carnitine: the modern industrial platform is asymmetric reduction of a 4-chloro-3-oxoester or fermentation, not GABOB methylation. So although L-carnitine and oxiracetam are growing end markets, <b>GABOB does not automatically participate in that growth</b>. Any business case that sizes GABOB demand as a share of carnitine or oxiracetam volume will be wrong by orders of magnitude.</div>
+  </div>
+</section>
+
+<section id="s03" class="report-section">
+  <div class="sec-head"><div class="sec-num">03</div><h2>Industry Applications, End-Products &amp; Application Market Sizes</h2></div>
+
+  <div class="card">
+    <h3>Cluster 1 &mdash; Chiral Building Block for (R)-Carnitine (L-Carnitine)</h3>
+    <p>(R)-GABOB is a documented precursor to (R)-carnitine, described in the patent literature as a vitamin-like substance important in converting stored body fat into energy, functioning as the carrier that transports fatty acids into mitochondria for oxidation. The two share a C4 skeleton, which is exactly why retrosynthetic analysis points both at the same chiral hydroxy-nitrile intermediates.</p>
+    <table>
+      <thead><tr><th>End-product</th><th>Details</th><th>Key companies</th></tr></thead>
+      <tbody>
+        <tr><td>L-carnitine, food &amp; pharma grade</td><td>Sports nutrition, infant nutrition, hemodialysis support, cardiac and myopathic indications</td><td>Lonza (Carnipure), Biosint S.p.A., Northeast Pharmaceutical Group (NEPG)</td></tr>
+        <tr><td>L-carnitine, feed grade</td><td>Animal feed additive (Carniking)</td><td>Lonza, Chengda Pharmaceutical, KoncepNutra</td></tr>
+        <tr><td>L-carnitine salts &amp; esters</td><td>L-carnitine L-tartrate, fumarate, acetyl-L-carnitine, propionyl-L-carnitine</td><td>Lonza; Indian players in tartrate: Gangwal Healthcare, Lifecare Laboratories, Anvitha Lifecare, Beloorbayir Biotech</td></tr>
+        <tr><td>Isotope-labelled carnitine standards</td><td>Stearoyl-L-carnitine-<sup>13</sup>C<sub>3</sub> chloride and related reference materials &mdash; (R)-GABOB cited as the synthesis intermediate</td><td>Reference-standard houses (Biosynth Carbosynth, TRC/LGC)</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead><tr><th>Segment</th><th>Market size</th><th>CAGR</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>L-carnitine, global</td><td>US$238.99 M (2025) &rarr; US$424.98 M (2034); North America 38% share</td><td>6.60%</td><td class="src"><a href="https://www.fortunebusinessinsights.com/l-carnitine-market-117839" target="_blank">Fortune Business Insights, Oct 2026</a></td></tr>
+        <tr><td>L-carnitine, global (second estimate)</td><td>US$235.6 M (2025) &rarr; US$385.8 M (2033)</td><td>6.5%</td><td class="src"><a href="https://www.grandviewresearch.com/press-release/global-l-carnitine-market" target="_blank">Grand View Research, Feb 2026</a></td></tr>
+        <tr><td>L-carnitine, global (third estimate)</td><td>US$257.61 M (2025) &rarr; US$334.32 M (2031)</td><td>4.44%</td><td class="src"><a href="https://techsciresearch.com/report/l-carnitine-market/16386.html" target="_blank">TechSci Research</a></td></tr>
+        <tr><td>Carnitine, all forms</td><td>US$535.96 M (2025) &rarr; US$887.45 M (2032)</td><td>7.47%</td><td class="src"><a href="https://www.marketresearch.com/Deep-Insights-Research-Co-DIR-v4285/Global-Carnitine-Research-Competitive-Technology-41803754" target="_blank">DIResearch</a></td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-warn"><b>Indirect-role warning:</b> GABOB&rsquo;s share of this market is <b>not</b> proportional to carnitine volume. Industrial L-carnitine is made by fermentation/bioprocess or by asymmetric reduction of 4-chloro-3-oxoester routes &mdash; not from GABOB. GABOB&rsquo;s genuine participation here is confined to <b>lab- and pilot-scale chiral synthesis and labelled standards</b>. Market sizes above are context for where the demand pull ultimately sits, not an addressable market for this product.</div>
+  </div>
+
+  <div class="card">
+    <h3>Cluster 2 &mdash; Nootropic / Racetam Intermediate Chain (4-Hydroxy-2-pyrrolidinone &rarr; Oxiracetam)</h3>
+    <p>GABOB is the historical starting material for 4-hydroxy-2-pyrrolidinone, the direct intermediate to oxiracetam, a cerebrally active pharmaceutical. (R)-(+)-4-hydroxy-2-pyrrolidinone is sold explicitly as an intermediate in oxiracetam preparation and as an enantiomeric intermediate for single-isomer drugs in antitumour, anaesthetic, antispasmodic, anti-inflammatory and anti-HIV classes.</p>
+    <table>
+      <thead><tr><th>End-product</th><th>Details</th><th>Key companies</th></tr></thead>
+      <tbody>
+        <tr><td>Oxiracetam (API &amp; injection/capsule)</td><td>Cognitive/nootropic agent; China classifies it as a prescription psychotropic requiring GMP licences and batch-release documentation</td><td>CSPC, Fuan Pharmaceutical Group, Harbin Medisan, Guangdong SENCEE, North China Pharmaceutical Group</td></tr>
+        <tr><td>(S)-Oxiracetam</td><td>Single-enantiomer follow-on (CAS 88929-35-5), tracked as its own market in China</td><td>Chinese API producers</td></tr>
+        <tr><td>4-Hydroxy-2-pyrrolidinone, both enantiomers</td><td>Intermediate for medicines and agricultural chemicals</td><td>Thermo Scientific / Alfa Aesar (catalogue); Chinese and Japanese process owners</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead><tr><th>Segment</th><th>Market size</th><th>CAGR</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Oxiracetam, global</td><td>US$187.4 M (2026) &rarr; US$338.77 M (2035)</td><td>6.8%</td><td class="src"><a href="https://markwideresearch.com/oxiracetam-market" target="_blank">MarkWide Research</a></td></tr>
+        <tr><td>Oxiracetam &mdash; China share</td><td>&asymp;9.0% of global market</td><td>n/a</td><td class="src"><a href="https://www.cognitivemarketresearch.com/oxiracetam-drugs-market-report" target="_blank">Cognitive Market Research</a></td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-bad"><b>Critical:</b> as documented in Section 2D, this is the cluster the industry actively replaced. Modern oxiracetam processes run from halo-alkoxybutenoate esters plus glycine specifically because the GABOB route was uneconomic. Treat Cluster 2 as a <b>declining, legacy</b> application, not a growth driver.</div>
+  </div>
+
+  <div class="card">
+    <h3>Cluster 3 &mdash; Neuroscience Research Reagent &amp; Reference Standard</h3>
+    <p>This is the cluster where (R)-GABOB demand is <b>real, current and enantiospecific</b> &mdash; because the whole scientific point is that the two enantiomers behave differently. Published pharmacology: (R)-GABOB is a moderate-potency GABA<sub>B</sub> agonist and a GABA<sub>C</sub> agonist (EC<sub>50</sub> 19 &micro;M, human receptor expressed in Xenopus oocytes), binds both GABA<sub>A</sub> and GABA<sub>B</sub> receptors, and blocks GABA reuptake in rat brain synaptosomes; at 20 mg/animal it inhibits amygdala electrical discharges in a cat seizure model.</p>
+    <table>
+      <thead><tr><th>End-use</th><th>Details</th><th>Key companies</th></tr></thead>
+      <tbody>
+        <tr><td>GABA-receptor subtype pharmacology</td><td>Stereoselectivity studies across GABA<sub>A</sub>/<sub>B</sub>/<sub>C</sub>; 10&ndash;250 mg packs</td><td>Cayman Chemical (31532), TargetMol (T85014), Biomol, Enamine EBC (EBC-04387)</td></tr>
+        <tr><td>Chiral building-block catalogue</td><td>1&ndash;25 g synthesis packs for medicinal-chemistry programmes</td><td>aablocks, ACHEMBLOCK, Ambeed, Biosynth Carbosynth, American Custom Chemicals</td></tr>
+        <tr><td>Metabolite / endogenous-standard work</td><td>GABOB is an endogenous GABA metabolite &mdash; relevant to metabolomics and impurity profiling</td><td>LGC/TRC, reference-standard houses</td></tr>
+        <tr><td>Impurity / enantiomeric-purity standard</td><td>(R) material as the counter-enantiomer standard for (S) or racemate assays</td><td>Reference-standard and impurity houses</td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-info"><b>MI estimate &mdash; addressable (R) merchant market: under US$1 M/yr globally, low confidence.</b> No market report exists for this isomer. Proxy method: the (R) isomer is listed by roughly a dozen catalogue houses at research pack sizes with 35-day lead times quoted by at least one (TargetMol), which is the signature of make-to-order rather than stocked volume; aggregate catalogue turnover at observed prices (US$65&ndash;320/g) across a dozen vendors supports a low-single-digit-hundred-kilogram-equivalent annual market at most, and plausibly far less.</div>
+  </div>
+
+  <div class="card">
+    <h3>Cluster 4 &mdash; Finished-Dose Anticonvulsant (Racemate Only &mdash; <i>Not</i> Addressable by the (R) Form)</h3>
+    <p>GABOB is marketed as an anticonvulsant for epilepsy in Europe, Japan and Mexico. It has more potent CNS inhibitory effects than GABA, attributed to better blood&ndash;brain-barrier penetration, but it is of relatively low potency as an anticonvulsant on its own and is more useful as an <b>adjuvant</b> alongside another anticonvulsant. It carries a Japanese Accepted Name (JAN).</p>
+    <table>
+      <thead><tr><th>Product</th><th>Details</th><th>Holder / market</th></tr></thead>
+      <tbody>
+        <tr><td>Gamibetal</td><td>20 tablets &times; 500 mg; syrup 200 mL 10%</td><td>SIT Laboratorio Farmaceutico Srl, Italy</td></tr>
+        <tr><td>Gamibetal plus (combination)</td><td>4-amino-3-hydroxybutyric acid + diazepam</td><td>SIT Laboratorio Farmaceutico Srl, Italy</td></tr>
+        <tr><td>Other brands</td><td>Aminoxan, Bogil, Diastal, Gabimex, Gabomade, Gaboril, Gamalate, Kolpo, Gaminal</td><td>Various; Europe / Japan / Mexico</td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-warn"><b>Excluded from the addressable market.</b> The registered medicine is the <b>racemate</b>, and the more anticonvulsant-potent enantiomer is (S), not (R). Supplying this cluster means selling cheap racemic API &mdash; a different, commoditised business with a reference API price of US$3,438/kg (<a href="https://pharmacompass.com/eu-ctd-dossier-marketing-authorisation/4-amino-3-hydroxybutyric-acid" target="_blank">PharmaCompass</a>) against Chinese racemate offers orders of magnitude lower.</div>
+  </div>
+
+  <div class="card">
+    <h3>Other Grades &amp; Related Isomers Worth Tracking</h3>
+    <table>
+      <thead><tr><th>Material</th><th>CAS</th><th>Commercial note</th></tr></thead>
+      <tbody>
+        <tr><td>Racemic GABOB (DL)</td><td>924-49-2</td><td>The marketed API; cheapest form; resolution feedstock</td></tr>
+        <tr><td>(S)-(+)-GABOB</td><td>Listed separately by Indian traders alongside the (R) form</td><td>The more potent anticonvulsant enantiomer; the natural co-product of any resolution route &mdash; an (R) business must have an (S) disposal or sales plan</td></tr>
+        <tr><td>(S)-(&ndash;)-4-Amino-2-hydroxybutyric acid</td><td>&mdash;</td><td>Positional isomer, distinct product &mdash; frequent source of ordering errors; appears in the same trader catalogues</td></tr>
+        <tr><td>(2S)-4-amino-2-hydroxybutanoic acid</td><td>40371-51-5</td><td>Separate ECHA C&amp;L entry (EC 670-305-7); same H315/H319/H335 profile &mdash; do not conflate</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section id="s04" class="report-section">
+  <div class="sec-head"><div class="sec-num">04</div><h2>Market Analysis</h2></div>
+  <div class="card">
+    <h3>4A &mdash; Global Market</h3>
+    <div class="alert a-warn"><b>Data-availability statement:</b> there is <b>no published market report</b> for (R)-GABOB, nor for GABOB in any form. All figures below are either (i) adjacent/downstream markets that set the demand context, or (ii) explicitly flagged MI estimates built by proxy. Management should treat the absolute size of this product as <i>uncertain but small</i>, and should not fund any decision that requires the market to be larger than a few hundred kilograms per year.</div>
+    <table>
+      <thead><tr><th style="width:32%">Market parameter</th><th style="width:36%">Value / finding</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>(R)-GABOB merchant market</td><td><b>MI estimate: &lt; US$1 M/yr globally, low confidence</b> &mdash; catalogue/make-to-order scale. Proxy: ~12 catalogue vendors, research pack sizes only, 35-day lead times quoted, no stocking manufacturer identified</td><td class="src">MI estimate &mdash; proxy from <a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">ChemicalBook price board (36 price points)</a></td></tr>
+        <tr><td>Racemic GABOB API reference price</td><td>US$3,438/kg (API reference price)</td><td class="src"><a href="https://pharmacompass.com/eu-ctd-dossier-marketing-authorisation/4-amino-3-hydroxybutyric-acid" target="_blank">PharmaCompass</a></td></tr>
+        <tr><td>Demand anchor 1 &mdash; L-carnitine</td><td>US$238.99 M (2025) &rarr; US$424.98 M (2034), 6.60% CAGR</td><td class="src"><a href="https://www.fortunebusinessinsights.com/l-carnitine-market-117839" target="_blank">Fortune Business Insights</a></td></tr>
+        <tr><td>Demand anchor 2 &mdash; oxiracetam</td><td>US$187.4 M (2026) &rarr; US$338.77 M (2035), 6.8% CAGR</td><td class="src"><a href="https://markwideresearch.com/oxiracetam-market" target="_blank">MarkWide Research</a></td></tr>
+        <tr><td>Carnitine industry structure</td><td>Top five manufacturers hold nearly <b>70%</b> share; capacity utilisation around 70%; production growth averaging 4.46%</td><td class="src"><a href="https://reports.valuates.com/market-reports/QYRE-Auto-13F10700/global-carnitine" target="_blank">QYResearch (via Valuates)</a>, <a href="https://reports.valuates.com/market-reports/QYRE-Auto-25M354/global-l-carnitine" target="_blank">QYResearch 2026</a></td></tr>
+        <tr><td>Key demand regions &mdash; downstream</td><td>North America leads L-carnitine consumption (38% revenue share, 2025); China dominates production and export volume; China also the centre of oxiracetam demand on ageing-population drivers</td><td class="src"><a href="https://www.fortunebusinessinsights.com/l-carnitine-market-117839" target="_blank">Fortune BI</a>; <a href="https://www.databridgemarketresearch.com/news/global-l-carnitine-market" target="_blank">Data Bridge, Jun 2026</a></td></tr>
+        <tr><td>Growth drivers for (R)-GABOB specifically</td><td>Academic GABA-receptor pharmacology funding; single-enantiomer drug development requiring chiral C4 synthons; metabolomics/impurity-standard demand. <b>Not</b> driven by downstream API volume growth (see 2D)</td><td class="src">MI analysis</td></tr>
+        <tr><td>Growth inhibitor</td><td>Downstream processes deliberately redesigned away from GABOB on cost grounds</td><td class="src"><a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4629797" target="_blank">US 4,629,797</a>; <a href="https://patents.google.com/patent/US5371237" target="_blank">US 5,371,237</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>4B &mdash; India Market</h3>
+    <table>
+      <thead><tr><th style="width:32%">Parameter</th><th style="width:36%">Finding</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr class="india"><td>Domestic production of (R)-GABOB</td><td><b>None identified.</b> No Indian manufacturer of either isomer located in public sources</td><td class="src">MI search finding &mdash; <a href="https://m.chemicalbook.com/Manufacturers/r-amino-3-hydroxybutanoic-acid.htm" target="_blank">ChemicalBook supplier directory</a> lists China / US / UK only</td></tr>
+        <tr class="india"><td>Import dependency</td><td><b>Effectively 100%</b> for the (R) isomer</td><td class="src">MI assessment</td></tr>
+        <tr class="india"><td>Indian presence in the chain</td><td>Trader-level only. One New Delhi trader lists DL-4-amino-3-hydroxybutyric acid alongside (R)-(&ndash;)-amino-3-hydroxybutanoic acid and (S)-(+)-4-amino-3-hydroxybutanoic acid; TCI sells the racemate in India at &#8377;2,600/5 g</td><td class="src"><a href="https://chemicalbook.com/Manufacturers-india/dl-4-amino-3-hydroxybutyric-acid.htm" target="_blank">ChemicalBook India suppliers</a>; <a href="https://www.tcichemicals.com/IN/en/p/A0318" target="_blank">TCI India A0318</a></td></tr>
+        <tr class="india"><td>Indian registered medicine containing GABOB</td><td><b>None confirmed.</b> Marketed territories cited are Europe, Japan and Mexico. No Indian approval located &mdash; treat as not approved pending CDSCO verification</td><td class="src"><a href="https://en.wikipedia.org/wiki/%CE%93-Amino-%CE%B2-hydroxybutyric_acid" target="_blank">Wikipedia / Index Nominum</a></td></tr>
+        <tr class="india"><td>Demand drivers in India</td><td>CRO/CDMO medicinal-chemistry programmes needing chiral C4 synthons; academic neuroscience; carnitine-salt formulators needing labelled standards; impurity-standard houses</td><td class="src">MI analysis</td></tr>
+        <tr class="india"><td>Consuming clusters</td><td>Hyderabad&ndash;Telangana (API/CRO), Bengaluru (CRO/biotech), Mumbai&ndash;Thane&ndash;Navi Mumbai (fine chemicals, reference standards), Ahmedabad&ndash;Ankleshwar&ndash;Vadodara (intermediates), Pune (R&amp;D), Chandigarh/Mohali (NIPER, academic)</td><td class="src">MI analysis</td></tr>
+        <tr class="india"><td>Policy relevance</td><td>India CDMO sector projected to grow from a US$3&ndash;3.5 B base, with explicit repositioning into higher-complexity segments &mdash; the structural tailwind for a <i>chiral-synthon sourcing</i> business rather than a bulk-manufacturing one</td><td class="src"><a href="https://biospectrumindia.com/article/pdf/27404" target="_blank">BioSpectrum India, Mar 2026</a></td></tr>
+        <tr class="india"><td>Heading-level import context</td><td>India&rsquo;s total 2025 import value under HS 2922 (oxygen-function amino-compounds) was <b>US$844.06 M</b> &mdash; whole-heading figure, not GABOB-specific; included only to show the heading is high-traffic and well-understood by customs</td><td class="src"><a href="https://www.tradeint.com/search/india/import-data/hs-code/2922/" target="_blank">TradeInt, Aug 2026</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>4C &mdash; Manufacturing Countries</h3>
+    <table>
+      <thead><tr><th>Country</th><th>Role</th><th>Share (MI est.)</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>&#127464;&#127475; China</td><td>Dominant supplier of both isomers and the racemate at scale</td><td><span class="tag t-hi">High &mdash; majority</span></td><td>All kg&ndash;100 kg offers located are Chinese (Capot, Shanghai Daken, Conier, LEAP Chem, Amity); also the base for downstream carnitine and oxiracetam</td></tr>
+        <tr><td>&#127482;&#127480; USA</td><td>Catalogue / research-grade packaging and distribution</td><td><span class="tag t-md">Moderate</span></td><td>Cayman, aablocks, ACHEMBLOCK, Ambeed, American Custom Chemicals, Thermo, INDOFINE &mdash; mostly repackagers/distributors rather than primary synthesisers</td></tr>
+        <tr><td>&#127471;&#127477; Japan</td><td>Racemate production &amp; catalogue supply; JAN-listed drug substance</td><td><span class="tag t-md">Moderate</span></td><td>TCI (Tokyo Chemical Industry) product A0318, &gt;98%(T)</td></tr>
+        <tr><td>&#127470;&#127481; Italy</td><td>Finished-dose anticonvulsant (racemate)</td><td><span class="tag t-lo">Low &mdash; niche</span></td><td>SIT Laboratorio Farmaceutico Srl (Gamibetal); Biosint S.p.A. in adjacent carnitine</td></tr>
+        <tr><td>&#127465;&#127466; Germany / &#127468;&#127463; UK / &#127464;&#127469; Switzerland</td><td>Reference standards &amp; distribution</td><td><span class="tag t-lo">Low</span></td><td>Biosynth Carbosynth, Biomol, LGC/TRC, bioscience.co.uk</td></tr>
+        <tr class="india"><td>&#127470;&#127475; India</td><td><b>Trading / re-distribution only</b> &mdash; no production identified</td><td><span class="tag t-lo">Negligible</span></td><td>This is the gap the sourcing-and-marketing business is meant to fill</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>4D &mdash; Global Manufacturers, Suppliers &amp; Distributors</h3>
+    <h4>(R) isomer &mdash; CAS 7013-07-2</h4>
+    <table>
+      <thead><tr><th>Company</th><th>Country</th><th>Role / offer</th><th>Website</th></tr></thead>
+      <tbody>
+        <tr><td>Cayman Chemical</td><td>USA</td><td>Research grade &ge;95%, 10/50/250 mg, item 31532, &ndash;20 &deg;C storage</td><td class="src"><a href="https://www.caymanchem.com/product/31532" target="_blank">caymanchem.com</a></td></tr>
+        <tr><td>TargetMol</td><td>USA/China</td><td>T85014; 50/100/250 mg; 35-day lead time quoted</td><td class="src"><a href="https://www.targetmol.com/compound/_r_4_amino_3_hydroxybutyric_acid" target="_blank">targetmol.com</a></td></tr>
+        <tr><td>Enamine (EBC)</td><td>Ukraine</td><td>EBC-04387, 95%, GABA-receptor binding compound</td><td class="src"><a href="https://ebc.enamine.net/molecule-product/EBC-04387" target="_blank">ebc.enamine.net</a></td></tr>
+        <tr><td>Biosynth Carbosynth</td><td>UK/Switzerland</td><td>FA32147; 100 mg&ndash;2 g</td><td class="src"><a href="https://amp.chemicalbook.com/ChemicalProductProperty_EN_CB6734941.htm" target="_blank">listing</a></td></tr>
+        <tr><td>aablocks</td><td>USA</td><td>AA00FB7Q; 95&ndash;97%; 100 mg&ndash;1 g; lowest observed unit price</td><td class="src"><a href="https://www.chemicalbook.com/Price/7013-07-2.htm" target="_blank">listing</a></td></tr>
+        <tr><td>ACHEMBLOCK</td><td>USA</td><td>T97186; 95%; 1 g / 5 g / 25 g &mdash; widest research ladder</td><td class="src"><a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">listing</a></td></tr>
+        <tr><td>Ambeed</td><td>USA</td><td>A116967; 100 mg / 250 mg / 5 g</td><td class="src"><a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">listing</a></td></tr>
+        <tr><td>American Custom Chemicals</td><td>USA</td><td>CCH0000119; 95%; 250 mg</td><td class="src"><a href="https://amp.chemicalbook.com/ChemicalProductProperty_EN_CB6734941.htm" target="_blank">listing</a></td></tr>
+        <tr><td>Biomol</td><td>Germany</td><td>TGM-T85014; 10/50 mg; 7&ndash;10 business days</td><td class="src"><a href="https://www.biomol.com/products/chemicals/biochemicals/r-4-amino-3-hydroxybutyric-acid-tgm-t85014-10mg" target="_blank">biomol.com</a></td></tr>
+        <tr><td>Capot Chemical</td><td>China</td><td><b>Trader</b>; 96% min HPLC; 1 g / 1 kg / 100 kg</td><td class="src"><a href="https://m.chemicalbook.com/Manufacturers/r-amino-3-hydroxybutanoic-acid.htm" target="_blank">listing</a></td></tr>
+        <tr><td>Shanghai Daken Advanced Materials</td><td>China</td><td><b>Trader</b>; 99%, &ldquo;pharmaceutical grade&rdquo;; 100 g / 1 / 5 / 25 kg</td><td class="src"><a href="https://m.chemicalbook.com/Manufacturers/r-amino-3-hydroxybutanoic-acid.htm" target="_blank">listing</a></td></tr>
+        <tr><td>CONIER Chem &amp; Pharma</td><td>China</td><td><b>Trader</b>; 99%; 1 kg / 5 kg</td><td class="src"><a href="https://m.chemicalbook.com/Manufacturers/r-amino-3-hydroxybutanoic-acid.htm" target="_blank">listing</a></td></tr>
+        <tr><td>LEAP Chem</td><td>Hong Kong</td><td><b>Trader</b>; 1 g &rarr; 25 kg ladder</td><td class="src"><a href="https://m.chemicalbook.com/Manufacturers/r-amino-3-hydroxybutanoic-acid.htm" target="_blank">listing</a></td></tr>
+      </tbody>
+    </table>
+    <h4>Racemate &amp; adjacent-market majors</h4>
+    <table>
+      <thead><tr><th>Company</th><th>Country</th><th>Role</th><th>Website</th></tr></thead>
+      <tbody>
+        <tr><td>Tokyo Chemical Industry (TCI)</td><td>Japan</td><td>Racemate A0318 &gt;98%(T), 5 g / 25 g; global incl. India</td><td class="src"><a href="https://www.tcichemicals.com/IN/en/p/A0318" target="_blank">tcichemicals.com</a></td></tr>
+        <tr><td>Thermo Scientific (Alfa Aesar)</td><td>USA</td><td>Racemate; also (R)-(+)-4-hydroxy-2-pyrrolidinone &ge;97% (downstream)</td><td class="src"><a href="https://www.fishersci.com/shop/products/r-4-hydroxy-2-pyrrolidinone-97-4/AAH66006MD" target="_blank">fishersci.com</a></td></tr>
+        <tr><td>INDOFINE Chemical</td><td>USA</td><td>Racemate, 98.6%</td><td class="src"><a href="https://thomassci.com/nav/casnumber/924492/categories/supplies/0" target="_blank">thomassci.com</a></td></tr>
+        <tr><td>Amity Chemical</td><td>China</td><td>DL-4-amino-3-hydroxybutyric acid, 99.99% claimed, 25 kg/drum</td><td class="src"><a href="https://www.chemicalbook.com/ProdSupplierGNCB2497354_EN.htm" target="_blank">listing</a></td></tr>
+        <tr><td>SIT Laboratorio Farmaceutico Srl</td><td>Italy</td><td>Gamibetal MA holder (finished dose)</td><td class="src"><a href="https://pharmacompass.com/eu-ctd-dossier-marketing-authorisation/4-amino-3-hydroxybutyric-acid" target="_blank">PharmaCompass</a></td></tr>
+        <tr><td>Lonza</td><td>Switzerland</td><td>Carnipure / Carniking L-carnitine; Nansha (China) capacity; direct Carnipure sales in India since 2019</td><td class="src"><a href="https://www.lonza.com/news/2019-05-28-13-00" target="_blank">lonza.com</a></td></tr>
+        <tr><td>Northeast Pharmaceutical Group (NEPG)</td><td>China</td><td>Bulk L-carnitine API, backward-integrated into feedstock in Liaoning</td><td class="src"><a href="https://markwideresearch.com/levocarnitine-market" target="_blank">MarkWide</a></td></tr>
+        <tr><td>Biosint S.p.A. / Hengtai / KoncepNutra / Chengda / Huayang</td><td>Italy / China</td><td>Remaining top-5 and near-top carnitine producers</td><td class="src"><a href="https://reports.valuates.com/market-reports/QYRE-Auto-13F10700/global-carnitine" target="_blank">QYResearch</a></td></tr>
+        <tr><td>CSPC / Fuan / Harbin Medisan / Guangdong SENCEE</td><td>China</td><td>Oxiracetam API &amp; finished dose</td><td class="src"><a href="https://marketpublishers.com/report/pharmaceuticals/drugs/investigation-report-on-china-oxiracetam-market-2010-2019.html" target="_blank">Market Publishers</a></td></tr>
+        <tr class="india"><td>Gangwal Healthcare, Lifecare Laboratories, Anvitha Lifecare, Beloorbayir Biotech</td><td>&#127470;&#127475; India</td><td>L-carnitine tartrate suppliers &mdash; the Indian end of the carnitine chain</td><td class="src"><a href="https://www.pharmacompass.com/manufacturers-suppliers-exporters/l-carnitine-tartrate" target="_blank">PharmaCompass</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s05" class="report-section">
+  <div class="sec-head"><div class="sec-num">05</div><h2>Latest News &amp; Industry Intelligence</h2></div>
+  <div class="alert a-info">No GABOB-specific news flow exists &mdash; the molecule is too small a market to generate trade press. The intelligence that matters is in the <b>downstream carnitine chain</b>, because that is where price, margin and regulatory pressure originate. Every item below is assessed for what it implies for our entry decision. (MODE A: analysed against secondary market context only; no trade data supplied.)</div>
+  <div class="card">
+    <table>
+      <thead><tr><th style="width:26%">News item</th><th>Summary &amp; implication for (R)-GABOB</th><th style="width:22%">Source &amp; date</th></tr></thead>
+      <tbody>
+        <tr><td><b>Lonza cancelled its Swiss L-carnitine facility FID</b></td><td>Final investment decision cancelled in February 2025 on low return on investment. <b>Implication:</b> the global leader in the single largest downstream market judged new Western carnitine capacity uneconomic. This is the strongest available third-party signal against our own manufacturing case in the same chain</td><td class="src"><a href="https://pmarketresearch.com/worldwide-l-carnitine-market-research/" target="_blank">pmarketresearch, citing Feb 2025</a></td></tr>
+        <tr><td><b>NEPG carnitine margin collapse</b></td><td>Northeast Pharmaceutical Group&rsquo;s L-carnitine gross margin fell from 38.6% (2023) to 21.4% (2024), with capacity expansion stalling industry-wide. <b>Implication:</b> downstream margin compression flows upstream as price pressure on every intermediate; do not model premium intermediate pricing</td><td class="src"><a href="https://pmarketresearch.com/worldwide-l-carnitine-market-research/" target="_blank">pmarketresearch</a></td></tr>
+        <tr><td><b>FDA warning letter on D-carnitine isomer levels</b></td><td>November 2024: FDA issued a warning letter to a Chinese API manufacturer for D-carnitine isomer content exceeding 0.8% against a 0.15% limit. <b>Implication:</b> this is the most commercially useful item in the report &mdash; it proves regulators are policing <b>enantiomeric purity</b> in exactly this chemical family. Our (R)-GABOB offer must lead with chiral-HPLC ee data on every CoA; it also creates demand for counter-enantiomer reference standards</td><td class="src"><a href="https://pmarketresearch.com/worldwide-l-carnitine-market-research/" target="_blank">pmarketresearch, citing Nov 2024</a></td></tr>
+        <tr><td><b>NEPG environmental penalty</b></td><td>March 2024: NEPG fined RMB 4.28 million, with severe operational disruption at the manufacturing base. <b>Implication:</b> single-source Chinese dependence in this chain carries real interruption risk &mdash; supports a dual-vendor sourcing policy from day one</td><td class="src"><a href="https://pmarketresearch.com/worldwide-l-carnitine-market-research/" target="_blank">pmarketresearch, citing Mar 2024</a></td></tr>
+        <tr><td><b>Chinese export concentration in carnitine</b></td><td>June 2026 analysis: NEPG, Liaoning KoncepNutra, Chengda and Huanggang Huayang control a vast share of global export volumes into Europe and North America, framed explicitly around geopolitical realignment and supply-chain vulnerability</td><td class="src"><a href="https://www.databridgemarketresearch.com/news/global-l-carnitine-market" target="_blank">Data Bridge, 01 Jun 2026</a></td></tr>
+        <tr><td><b>NMPA tightening on nootropic APIs</b></td><td>China&rsquo;s NMPA classifies oxiracetam as a prescription psychotropic and has tightened purity standards for nootropic APIs, with GMP Annex 1 sterile requirements for injectables excluding non-certified chemical suppliers from domestic distribution. <b>Implication:</b> the oxiracetam chain is becoming <i>harder</i> for an outside intermediate supplier to enter, reinforcing the Section 2D conclusion</td><td class="src"><a href="https://markwideresearch.com/oxiracetam-market" target="_blank">MarkWide Research</a>; <a href="https://markwideresearch.com/oxiracetam-injection-market" target="_blank">MarkWide (injection)</a></td></tr>
+        <tr><td><b>Carnitine capacity utilisation ~70%</b></td><td>Global L-carnitine capacity utilisation has remained around 70% with production growth averaging 4.46%. <b>Implication:</b> slack capacity downstream means no supply-driven scramble for alternative intermediates</td><td class="src"><a href="https://reports.valuates.com/market-reports/QYRE-Auto-25M354/global-l-carnitine" target="_blank">QYResearch 2026</a></td></tr>
+        <tr><td><b>Indian CDMO repositioning</b></td><td>March 2026: India&rsquo;s CDMO sector growing from a US$3&ndash;3.5 B base with deliberate movement into higher-complexity segments. <b>Implication:</b> the realistic demand growth for catalogue-scale chiral synthons in India is here, not in bulk API</td><td class="src"><a href="https://biospectrumindia.com/article/pdf/27404" target="_blank">BioSpectrum India, 01 Mar 2026</a></td></tr>
+        <tr><td><b>Biocatalysis advancing on C4 halohydrin chemistry</b></td><td>November 2025: halohydrin-dehalogenase kinetic resolution extended to &delta;-haloalcohols with up to &gt;99% ee on preparative scale. <b>Implication:</b> the enzymatic toolbox around GABOB-adjacent chemistry keeps improving &mdash; relevant if we ever license a route, and a reason to re-test the manufacturing verdict every 24 months</td><td class="src"><a href="https://doaj.org/article/3f33df4ae19f46fd9ce23b8de1333700" target="_blank">Communications Chemistry, Nov 2025</a></td></tr>
+        <tr><td><b>Lonza India footprint deepening</b></td><td>Rewari (India) capsule lines operational from Q4 2024 with further lines from Q3 2025; Carnipure already sold directly in India since 2019. <b>Implication:</b> the multinational is building Indian commercial presence &mdash; competitive context for anyone selling into Indian nutraceutical/pharma accounts</td><td class="src"><a href="https://chemanager-online.com/en/news/lonza-capsules-health-ingredients-expands-capsule-manufacturing-capacity-in-india-and-china" target="_blank">CHEManager, 20 Dec 2024</a>; <a href="https://www.lonza.com/news/2019-05-28-13-00" target="_blank">Lonza, 2019</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s06" class="report-section">
+  <div class="sec-head"><div class="sec-num">06</div><h2>Pricing Intelligence</h2></div>
+  <div class="alert a-warn"><b>Data-availability alert:</b> observable pricing for the (R) isomer is <b>catalogue pricing only</b>. Thirty-six price points were located spanning US$14 to US$2,208.45 per pack. No verified transaction price exists at kilogram scale; the kg offers are trader listings without published prices. All per-kg figures below are MI extrapolations and must be replaced with real quotations before any commitment.</div>
+  <div class="card">
+    <h3>6A &mdash; Price by Quantity Scale</h3>
+    <table>
+      <thead><tr><th style="width:18%">Scale</th><th>Price range (USD)</th><th style="width:20%">INR equivalent (&#8377;83/US$)</th><th>Grade &amp; source</th></tr></thead>
+      <tbody>
+        <tr><td><b>(R) &mdash; small (100&ndash;250 mg)</b></td><td>US$14&ndash;41 /100 mg; US$32&ndash;62 /250 mg; US$218.40 /250 mg (premium house)</td><td>&#8377;1,160&ndash;3,400 /100 mg</td><td>95&ndash;97% &mdash; <a href="https://www.chemicalbook.com/Price/7013-07-2.htm" target="_blank">aablocks</a>, <a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">Ambeed</a>, <a href="https://amp.chemicalbook.com/ChemicalProductProperty_EN_CB6734941.htm" target="_blank">American Custom Chemicals</a></td></tr>
+        <tr><td><b>(R) &mdash; research (50 mg&ndash;1 g)</b></td><td>US$86 /50 mg, US$157 /100 mg, US$373 /250 mg (TargetMol); &pound;48 /50 mg (Cayman via UK distributor); US$65&ndash;83 /g; US$320 /g (Biosynth); US$607.50 /g (Abosyn)</td><td>&#8377;5,400&ndash;6,900 /g at the low end</td><td>&ge;95% &mdash; <a href="https://www.targetmol.com/compound/_r_4_amino_3_hydroxybutyric_acid" target="_blank">TargetMol</a>, <a href="https://bioscience.co.uk/product~1039266" target="_blank">bioscience.co.uk</a>, <a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">ChemicalBook board</a></td></tr>
+        <tr><td><b>(R) &mdash; medium (5&ndash;25 g)</b></td><td>US$310 /5 g (US$62/g); US$709 /5 g (US$142/g); US$580 /10 g (US$58/g); US$1,350 /25 g (<b>US$54/g</b>)</td><td>&#8377;4,480/g at 25 g</td><td>95% &mdash; <a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">ACHEMBLOCK T97186, AHH MT-23959, Ambeed</a></td></tr>
+        <tr><td><b>(R) &mdash; bulk (1 kg+)</b></td><td><b>No published price.</b> Offers exist at 1 / 5 / 25 / 100 kg from Chinese traders, price on enquiry. MI extrapolation from the 25 g point and typical catalogue-to-bulk compression: <b>US$3,000&ndash;12,000/kg</b> order of magnitude, wide band, must be quoted</td><td>&#8377;2.5&ndash;10 lakh/kg (indicative only)</td><td>96&ndash;99% claimed &mdash; <a href="https://m.chemicalbook.com/Manufacturers/r-amino-3-hydroxybutanoic-acid.htm" target="_blank">Capot, Shanghai Daken, Conier, LEAP</a>. MI estimate</td></tr>
+        <tr><td><b>Racemate &mdash; benchmark</b></td><td>US$17 /5 g and US$43 /25 g (TCI US, i.e. <b>US$1.72/g at 25 g</b>); &euro;19 /5 g, &euro;63 /25 g (TCI CH); &#8377;2,600 /5 g (TCI India)</td><td>&#8377;520/g at 5 g in India</td><td>&gt;98%(T) &mdash; <a href="https://www.tcichemicals.com/US/en/p/A0318" target="_blank">TCI US</a>, <a href="https://www.tcichemicals.com/IN/en/p/A0318" target="_blank">TCI India</a>, <a href="https://tcichemicals.com/CH/en/p/A0318" target="_blank">TCI CH</a></td></tr>
+        <tr><td><b>Racemate &mdash; API reference</b></td><td>US$3,438/kg reference API price</td><td>&#8377;2.85 lakh/kg</td><td><a href="https://pharmacompass.com/eu-ctd-dossier-marketing-authorisation/4-amino-3-hydroxybutyric-acid" target="_blank">PharmaCompass</a></td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-info"><b>The enantiomeric premium is the whole business.</b> At 25 g, the (R) isomer sells at roughly <b>US$54/g</b> against roughly <b>US$1.72/g</b> for the racemate &mdash; a premium of about <b>30&times;</b>. That multiple is the margin pool, and it is a <i>resolution-and-QC</i> premium, not a scarcity premium. It compresses the moment a buyer qualifies a cheaper resolution supplier, which is precisely why the realistic business here is service (documentation, ee certification, lead time, small-pack logistics) rather than molecules.</div>
+  </div>
+  <div class="card">
+    <h3>6B &mdash; Price Trend &amp; India Landed-Cost Factors</h3>
+    <table>
+      <thead><tr><th style="width:26%">Factor</th><th>Finding</th><th style="width:22%">Source</th></tr></thead>
+      <tbody>
+        <tr><td>Trend direction</td><td><b>Stable to softening.</b> Driver: downstream margin compression (NEPG 38.6% &rarr; 21.4%) and slack carnitine capacity (~70% utilisation) rather than any GABOB-specific dynamic</td><td class="src"><a href="https://pmarketresearch.com/worldwide-l-carnitine-market-research/" target="_blank">pmarketresearch</a>; <a href="https://reports.valuates.com/market-reports/QYRE-Auto-25M354/global-l-carnitine" target="_blank">QYResearch</a></td></tr>
+        <tr><td>Price dispersion</td><td>Extreme: US$54/g to US$607/g for nominally comparable 95% (R) material. Indicates an opaque, make-to-order market with no reference price &mdash; <b>negotiating leverage is high</b> for a buyer who runs a proper RFQ</td><td class="src"><a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">ChemicalBook, 36 price points</a></td></tr>
+        <tr class="india"><td>&#127470;&#127475; India import duty stack</td><td>BCD 7.5% + SWS 0.75% + IGST 18% = <b>&asymp;27.735%</b> on CIF under 29225090. IGST is creditable for a GST-registered importer; the real sunk cost is BCD+SWS &asymp; 8.25%</td><td class="src"><a href="https://treayo.com/en/hs/india/29225090" target="_blank">treayo (ICEGATE-derived)</a></td></tr>
+        <tr class="india"><td>&#127470;&#127475; Classification risk cost</td><td>Alternate reading 29224990 carries &asymp;28.47% &mdash; a ~0.7 pt delta, immaterial per shipment but material as retrospective exposure across a portfolio of consignments</td><td class="src"><a href="https://eximpe.com/hsncode-finder/29224990" target="_blank">eximpe</a></td></tr>
+        <tr class="india"><td>&#127470;&#127475; Logistics &amp; cold-chain</td><td>If the &ndash;20 &deg;C storage guidance is adopted, air freight with gel-pack/dry-ice and a validated cold chain applies &mdash; MI estimate <b>US$150&ndash;600 per small consignment</b>, which can exceed goods value on a 10&ndash;50 mg order. If the TCI ambient (&lt;15 &deg;C) guidance is accepted, cost drops sharply. <b>Resolve this with the chosen vendor before pricing to customers</b></td><td class="src">MI estimate; storage conflict per <a href="https://cdn.caymanchem.com/cdn/insert/31532.pdf" target="_blank">Cayman</a> vs <a href="https://www.tcichemicals.com/US/en/p/A0318" target="_blank">TCI</a></td></tr>
+        <tr class="india"><td>&#127470;&#127475; Minimum economic order</td><td>MI estimate: below ~US$2,500 landed value, duty + freight + documentation + QC overhead makes a consignment margin-negative at normal distributor markups. Consolidate orders</td><td class="src">MI estimate</td></tr>
+        <tr><td>Currency risk</td><td>Sourcing in USD/CNY against INR revenue. On catalogue-scale business with 4&ndash;6 week cycles, hedging is usually not cost-justified; price quotations should instead carry a validity window of 15&ndash;30 days</td><td class="src">MI analysis</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section id="s07" class="report-section">
+  <div class="sec-head"><div class="sec-num">07</div><h2>Regulatory, Licensing &amp; Compliance</h2></div>
+  <div class="alert a-info"><b>Key compliance distinction to carry into every discussion:</b> GABOB is <b>not</b> a scheduled narcotic or psychotropic substance under any regime located in this research &mdash; the ITC-HS notes attaching to heading 2922 that reference NDPS Rules apply to <i>other</i> tariff lines in the heading, not to this molecule. However, the <b>racemate is a registered prescription drug substance</b> in Italy, Japan and Mexico, and China regulates the downstream oxiracetam as a prescription psychotropic. The (R) isomer, sold as a research chemical and chiral intermediate, sits outside drug licensing &mdash; <i>provided it is never represented, labelled or supplied for human use</i>.</div>
+  <div class="card">
+    <h3>7A &mdash; Global Regulatory Position</h3>
+    <table>
+      <thead><tr><th style="width:13%">Country / region</th><th style="width:13%">Body</th><th style="width:19%">Classification</th><th style="width:17%">Licence / permit</th><th>Key restrictions &amp; notes</th></tr></thead>
+      <tbody>
+        <tr class="india"><td>&#127470;&#127475; India</td><td>CPCB / SPCB</td><td>Not listed as a hazardous chemical in sources located; GHS irritant only (H315/H319/H335)</td><td>Standard factory/storage consents only if handled at scale</td><td>No specific CPCB restriction identified. <b>Unverified &mdash; confirm with SPCB before any handling licence filing</b></td></tr>
+        <tr class="india"><td>&#127470;&#127475; India</td><td>DGFT (import)</td><td>ITC-HS 29225090 &mdash; import policy <b>Free</b></td><td><b>No import licence required</b></td><td>One import regulation/restriction flag attaches at heading level; verify the specific note applies to another tariff line. IEC + standard Bill of Entry</td></tr>
+        <tr class="india"><td>&#127470;&#127475; India</td><td>DGFT (export)</td><td>Not identified on SCOMET lists</td><td>No export licence identified</td><td><b>SCOMET screening still mandatory per consignment</b> as policy, since lists are revised; retain the screening record</td></tr>
+        <tr class="india"><td>&#127470;&#127475; India</td><td>CDSCO</td><td>No Indian marketing approval for GABOB located; no Indian drug schedule entry located</td><td>Not required for research-chemical supply</td><td><b>Critical control:</b> if the material is ever offered as an API or for human use, Drugs &amp; Cosmetics Act licensing and import registration apply in full. Label and invoice every consignment &ldquo;For research use only &mdash; not for human or veterinary use&rdquo;</td></tr>
+        <tr class="india"><td>&#127470;&#127475; India</td><td>Overall summary</td><td colspan="3"><b>Plain language: nothing blocks importing and trading this material in India today.</b> It is a freely importable organic chemical at ~27.7% duty with no drug or narcotics licence needed, as long as it is sold strictly as a research chemical / intermediate and never positioned for human use. The two real compliance jobs are (1) a written customs classification position and (2) airtight research-use-only labelling</td></tr>
+        <tr><td>&#127482;&#127480; USA</td><td>EPA (TSCA) / FDA</td><td>TSCA inventory status <b>not confirmed</b> in this research. FDA UNII assigned (1ZHM019FLD) for the racemate; research material sold under &ldquo;not for human or veterinary diagnostic or therapeutic use&rdquo;</td><td>None identified for R&amp;D quantities (TSCA R&amp;D exemption typically applies)</td><td>Commercial import at volume requires a confirmed TSCA position &mdash; <b>verify on the EPA Substance Registry before any US-bound shipment</b></td></tr>
+        <tr><td>&#127466;&#127482; EU</td><td>ECHA (REACH / CLP)</td><td>ECHA InfoCard 100.011.916 exists; CLP notified classification in this family is H315/H319/H335 with GHS07/Warning. <b>No REACH registration dossier or SVHC listing located</b></td><td>REACH registration required above 1 t/yr per legal entity; R&amp;D (PPORD) exemptions for small volumes</td><td>Not identified as SVHC. Research-scale EU supply operates below registration thresholds; verify with any EU supplier whether they hold a registration</td></tr>
+        <tr><td>&#127464;&#127475; China</td><td>MEE / NMPA</td><td>Chemical freely traded by numerous Chinese suppliers. IECSC listing <b>not confirmed</b>. Downstream oxiracetam is an NMPA <b>prescription psychotropic</b> requiring GMP licences and batch-release documentation</td><td>Export documentation per Chinese customs; no special licence identified for this chemical</td><td>If buying from China, obtain the supplier&rsquo;s export compliance declaration and, for any pharma-grade claim, GMP evidence</td></tr>
+        <tr><td>&#127471;&#127477; Japan</td><td>MHLW / METI (ENCS)</td><td>Holds a <b>Japanese Accepted Name (JAN)</b> as &gamma;-amino-&beta;-hydroxybutyric acid &mdash; i.e. recognised as a drug substance in Japan. ENCS number <b>not confirmed</b></td><td>Drug regulation applies to the medicinal product; TCI sells the racemate as a reagent</td><td>Japanese catalogue supply is routine; medicinal use is separately regulated</td></tr>
+        <tr><td>&#127470;&#127481; Italy / &#127474;&#127485; Mexico</td><td>AIFA / COFEPRIS</td><td><b>Registered prescription medicine</b> (Gamibetal and combination with diazepam)</td><td>Full marketing authorisation held by SIT Laboratorio Farmaceutico Srl</td><td>Note the diazepam combination product &mdash; <b>that</b> product is controlled by virtue of the diazepam component. Do not let the combination&rsquo;s status be attributed to GABOB itself</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>7B &mdash; India Detailed Compliance Checklist</h3>
+    <table>
+      <thead><tr><th style="width:24%">Activity</th><th style="width:20%">Requirement</th><th>Action for us</th></tr></thead>
+      <tbody>
+        <tr class="india"><td>Manufacturing licence</td><td>Not applicable unless we manufacture; then standard factory licence + SPCB consent to establish/operate. Drug licence only if positioned as API</td><td>Not triggered under the recommended business modes</td></tr>
+        <tr class="india"><td>Import permission</td><td><b>None.</b> IEC + Bill of Entry under 29225090; policy Free</td><td>Confirm IEC active; obtain CAAR classification opinion</td></tr>
+        <tr class="india"><td>Export permission</td><td>No licence identified; SCOMET screening as standing policy</td><td>Build SCOMET screening into the order-acceptance checklist</td></tr>
+        <tr class="india"><td>Storage &amp; handling</td><td>GHS irritant: H315/H319/H335. Eye/face protection, skin-contact controls, ventilation. Cold storage per vendor guidance (unresolved &mdash; see 6B)</td><td>Issue an internal SDS-based handling note; settle the storage-temperature question with the vendor in writing</td></tr>
+        <tr class="india"><td>Pharma supply (CDSCO / Schedule M)</td><td>Triggered <b>only</b> if supplied as an API for human use</td><td><b>Hard internal rule: do not accept any order that states human use.</b> Research-use-only declaration on every quotation, invoice, label and CoA</td></tr>
+        <tr class="india"><td>GST</td><td>IGST 18%, Schedule II; creditable</td><td>Standard; ensure HSN consistency between purchase and sale invoices</td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-ok"><b>India regulatory status in plain language:</b> this is a <b>clean, low-friction import</b>. No DGFT licence, no narcotics or psychotropic scheduling, no CDSCO registration needed for research-chemical trade, and duty is a predictable ~27.7% of which 18 points are creditable IGST. The entire regulatory risk of this product reduces to two disciplines we control ourselves: correct HS classification, and never letting the material be sold for human use.</div>
+  </div>
+</section>
+
+<section id="s08" class="report-section">
+  <div class="sec-head"><div class="sec-num">08</div><h2>Potential Customers &amp; Target Companies</h2></div>
+  <div class="card">
+    <h3>8A &mdash; Indian Target Companies</h3>
+    <table>
+      <thead><tr><th style="width:19%">Company</th><th style="width:15%">Segment</th><th style="width:13%">Location</th><th>Why a target</th><th style="width:13%">Website</th></tr></thead>
+      <tbody>
+        <tr class="india"><td><b>Syngene International</b></td><td>CRO / CDMO</td><td>Bengaluru</td><td>Large integrated discovery + development house; consumes chiral building blocks across many client programmes and buys reference standards continuously. Entry point for catalogue-scale (R) synthon supply</td><td class="src"><a href="https://annualreport.syngeneintl.com/cdmo-divisions.html" target="_blank">syngeneintl.com</a></td></tr>
+        <tr class="india"><td><b>Hikal Ltd</b></td><td>API &amp; intermediates</td><td>Mumbai / Panoli / Mahad</td><td>Explicit strengths in <b>chiral chemistry</b>, custom synthesis and contract research, supporting gram-to-tonne scale; already makes <b>piracetam and pregabalin</b> &mdash; i.e. sits in the racetam and GABA-analogue space where GABOB chemistry is native</td><td class="src"><a href="https://www.hikal.com/AnnualReports/2025/pdf/Hikal-AR2025_Pharmaceuticals.pdf" target="_blank">hikal.com</a></td></tr>
+        <tr class="india"><td><b>Jubilant Biosys / Jubilant Ingrevia</b></td><td>CRO / CDMO, intermediates</td><td>Noida / Bengaluru</td><td>Runs complex multi-step synthesis of APIs with multiple chiral centres and chiral separations, and maintains an in-house repository of scaffolds, building blocks, intermediates and reference compounds &mdash; a structural buyer of exactly this class of material</td><td class="src"><a href="https://www.jubilantbiosys.com/new-staging/?p=11104" target="_blank">jubilantbiosys.com</a></td></tr>
+        <tr class="india"><td><b>Embio Ltd</b></td><td>Chiral molecules, controlled substances</td><td>Mumbai / Nashik</td><td>Self-describes as a leading global player in controlled substances, advanced intermediates and <b>chiral molecules</b>, with Schedule-1 &amp; Schedule-2 manufacturing licences &mdash; the Indian company most likely to value a GABOB-family chiral synthon and the most capable of handling it compliantly</td><td class="src"><a href="https://pharmasource.global/directory/embio-ltd/" target="_blank">pharmasource.global</a></td></tr>
+        <tr class="india"><td><b>Syntho Chirals Pvt Ltd</b></td><td>CDMO + CRO, chirals</td><td>India (250&ndash;499 employees)</td><td>CDMO specialising in small-molecule raw materials, intermediates and APIs; name and positioning indicate chiral work as the core franchise</td><td class="src"><a href="https://www.cphi-online.com/company/syntho-chirals-private-limited/" target="_blank">cphi-online.com</a></td></tr>
+        <tr class="india"><td><b>Darshan Pharmachem Pvt Ltd</b></td><td>API intermediates</td><td>Ankleshwar, Gujarat</td><td>ISO 9001/14001/45001 and CDSCO-certified intermediates maker; already produces the chiral pregabalin intermediate <b>R-(&ndash;)-RCMH (CAS 181289-33-8)</b> &mdash; demonstrated capability and appetite for single-enantiomer GABA-analogue intermediates</td><td class="src"><a href="https://pharmasource.global/directory/darshan-pharmachem-p-limited/" target="_blank">pharmasource.global</a></td></tr>
+        <tr class="india"><td><b>Shilpa CDMO (Shilpa Pharma Lifesciences)</b></td><td>Complex small-molecule CDMO</td><td>Raichur / Hyderabad</td><td>Launched at CPHI Milan Oct 2026 as a dedicated complex small-molecule CDMO, investing in one of India&rsquo;s largest small-molecule platforms &mdash; a new, actively-buying account</td><td class="src"><a href="https://www.biospectrumindia.com/article/pdf/28447" target="_blank">biospectrumindia.com</a></td></tr>
+        <tr class="india"><td><b>Daicel Chiral Technologies (India)</b></td><td>Chiral separations &amp; analytics</td><td>Hyderabad</td><td>Not a volume buyer of the molecule but the <b>key technical ally</b>: chiral separation, chromatography and method development. Partner them for the ee-certification capability that differentiates our offer</td><td class="src"><a href="https://pharmasource.global/directory/daicel-chiral-technologies-india-pvt-ltd" target="_blank">chiraltech.com</a></td></tr>
+        <tr class="india"><td><b>Gangwal Healthcare</b></td><td>Excipients / carnitine salts</td><td>Mumbai</td><td>Listed L-carnitine tartrate supplier &mdash; sits in the carnitine chain and needs labelled/reference standards</td><td class="src"><a href="https://www.pharmacompass.com/manufacturers-suppliers-exporters/l-carnitine-tartrate" target="_blank">PharmaCompass</a></td></tr>
+        <tr class="india"><td><b>Lifecare Laboratories Pvt Ltd</b></td><td>Carnitine salts</td><td>India</td><td>L-carnitine tartrate supplier &mdash; same rationale; a channel into carnitine-chain QC requirements</td><td class="src"><a href="https://www.pharmacompass.com/manufacturers-suppliers-exporters/l-carnitine-tartrate" target="_blank">PharmaCompass</a></td></tr>
+        <tr class="india"><td><b>Anvitha Lifecare</b></td><td>Carnitine salts</td><td>India</td><td>L-carnitine tartrate supplier; smaller account, faster decision cycle</td><td class="src"><a href="https://www.pharmacompass.com/manufacturers-suppliers-exporters/l-carnitine-tartrate" target="_blank">PharmaCompass</a></td></tr>
+        <tr class="india"><td><b>Beloorbayir Biotech</b></td><td>Nutraceutical ingredients</td><td>Bengaluru</td><td>L-carnitine tartrate supplier into nutraceuticals; relevant for enantiomeric-purity standards given the FDA D-carnitine precedent</td><td class="src"><a href="https://www.pharmacompass.com/manufacturers-suppliers-exporters/l-carnitine-tartrate" target="_blank">PharmaCompass</a></td></tr>
+        <tr class="india"><td><b>CSIR laboratories (NCL Pune / IICT Hyderabad)</b></td><td>Public R&amp;D / technology licensor</td><td>Pune / Hyderabad</td><td><b>Both key (R)-GABOB chemoenzymatic process patents are CSIR-owned.</b> Target not as a customer but as a licensor and co-development partner if manufacturing is ever revisited</td><td class="src"><a href="https://patents.justia.com/patent/7374926" target="_blank">US 7,374,926</a>, <a href="https://patents.justia.com/patent/7816119" target="_blank">US 7,816,119</a></td></tr>
+        <tr class="india"><td><b>Akums Drugs &amp; Pharmaceuticals</b></td><td>CDMO + branded formulations</td><td>Haridwar / Delhi NCR</td><td>Large CDMO with domestic and international formulation presence; broad intermediate and standard consumption</td><td class="src"><a href="https://akums.in/?p=134" target="_blank">akums.in</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>8B &mdash; Global Target Companies</h3>
+    <table>
+      <thead><tr><th style="width:20%">Company</th><th style="width:16%">Country &amp; segment</th><th>Why a target</th></tr></thead>
+      <tbody>
+        <tr><td><b>Lonza</b></td><td>Switzerland &mdash; L-carnitine (Carnipure/Carniking), CDMO</td><td>Global carnitine leader with direct India sales since 2019 and Indian capsule capacity. Target for labelled-standard and chiral-synthon supply, and as the bellwether for carnitine-chain economics</td></tr>
+        <tr><td><b>Biosint S.p.A.</b></td><td>Italy &mdash; carnitine producer</td><td>Top-five carnitine manufacturer in the same country as the GABOB finished-dose holder; natural account for enantiopure C4 reference materials</td></tr>
+        <tr><td><b>Northeast Pharmaceutical Group (NEPG)</b></td><td>China &mdash; bulk L-carnitine API</td><td>Backward-integrated bulk leader under margin pressure. Both a potential large buyer of intermediates and the most likely source of competitive pressure</td></tr>
+        <tr><td><b>Cayman Chemical</b></td><td>USA &mdash; research reagents</td><td>Already lists (R)-GABOB (item 31532) and is named among L-carnitine market key players. Possible supply partner and benchmark for research-pack service levels</td></tr>
+        <tr><td><b>Tokyo Chemical Industry (TCI)</b></td><td>Japan &mdash; reagents</td><td>Holds the racemate franchise globally including India at &#8377;2,600/5 g. Benchmark competitor for catalogue positioning; possible racemate feedstock source</td></tr>
+        <tr><td><b>Biosynth Carbosynth</b></td><td>UK / Switzerland &mdash; specialty &amp; reference standards</td><td>Lists the (R) isomer (FA32147) at premium pricing &mdash; a channel partner for regulated-market reference-standard business</td></tr>
+        <tr><td><b>LGC Standards / TRC</b></td><td>UK / Canada &mdash; reference standards</td><td>Lists 4-amino-3-hydroxybutanoic acid &gt;95% HPLC neat. The enantiomeric-purity standards business created by the FDA D-carnitine precedent lands here</td></tr>
+        <tr><td><b>CSPC Pharmaceutical Group</b></td><td>China &mdash; oxiracetam API &amp; injectables</td><td>Largest named oxiracetam producer with captive capacity. Worth a single qualifying conversation to confirm whether any GABOB-route demand survives; expect the answer to be no (Section 2D)</td></tr>
+        <tr><td><b>Codexis (and HHDH licensors)</b></td><td>USA &mdash; engineered biocatalysts</td><td>Holds engineered halohydrin-dehalogenase IP (US 8,187,856 / US 8,580,555). The enabling partner for any future enzymatic route; approach only if manufacturing is reopened</td></tr>
+        <tr><td><b>SIT Laboratorio Farmaceutico Srl</b></td><td>Italy &mdash; Gamibetal MA holder</td><td>The only identified finished-dose franchise. A racemate API supply conversation, not an (R) conversation &mdash; and a useful source of truth on actual annual GABOB consumption</td></tr>
+      </tbody>
+    </table>
+    <div class="alert a-info"><b>Commercial note on account strategy:</b> the realistic first sale is <b>not</b> a tonnage contract. It is a 5&ndash;25 g order from an Indian CRO or CDMO medicinal-chemistry team that currently waits 4&ndash;6 weeks for an imported research pack. Winning on <b>lead time, documentation quality and ee certification</b> at that scale is what earns the right to the larger scale-up order if a client programme advances.</div>
+  </div>
+</section>
+<section id="s09" class="report-section">
+  <div class="sec-head"><div class="sec-num">09</div><h2>Strategic Business Frameworks</h2></div>
+  <div class="card">
+    <h3>9A &mdash; SWOT (specific to our company entering (R)-GABOB)</h3>
+    <div class="swot">
+      <div class="sq sq-s">
+        <h5>Strengths</h5>
+        <ul>
+          <li>Existing import&ndash;export and domestic trading infrastructure; IEC and customs processes already running</li>
+          <li>CRO/R&amp;D arm can qualify material in-house and sell technical credibility, not just price</li>
+          <li>India-based proximity to the fastest-growing buyer pool (Indian CDMO base growing off US$3&ndash;3.5 B)</li>
+          <li>No drug licence, no narcotics scheduling, free import policy &mdash; low compliance barrier to first revenue</li>
+          <li>Small order sizes mean low working-capital commitment to enter and learn</li>
+        </ul>
+      </div>
+      <div class="sq sq-w">
+        <h5>Weaknesses</h5>
+        <ul>
+          <li>No chiral-synthesis or biocatalysis manufacturing capability of our own</li>
+          <li>No existing relationships with the Chinese traders who hold the kg-scale supply</li>
+          <li>No in-house validated chiral-HPLC ee method for a polar underivatised amino acid &mdash; must be built or outsourced</li>
+          <li>Zero brand standing with academic and CRO buyers against entrenched catalogue houses</li>
+          <li>Cold-chain capability for &ndash;20 &deg;C small parcels not established</li>
+        </ul>
+      </div>
+      <div class="sq sq-o">
+        <h5>Opportunities</h5>
+        <ul>
+          <li><b>~30&times; enantiomeric price premium</b> over the racemate is the margin pool to attack</li>
+          <li><b>FDA D-carnitine warning letter (Nov 2024)</b> creates live demand for enantiomeric-purity standards in this exact chemical family</li>
+          <li>India has <b>no domestic supplier at all</b> &mdash; genuine white space for a local-stock, short-lead-time offer</li>
+          <li>CSIR owns the two relevant chemoenzymatic process patents &mdash; a licensable, India-native route exists if scale ever justifies it</li>
+          <li>Shared-intermediate logic: the same chiral C4 synthon serves both (R)-GABOB and (R)-carnitine</li>
+          <li>Extreme price dispersion (US$54&ndash;607/g) means disciplined sourcing can buy well below prevailing list levels</li>
+        </ul>
+      </div>
+      <div class="sq sq-t">
+        <h5>Threats</h5>
+        <ul>
+          <li><b>Structural demand erosion:</b> downstream oxiracetam and carnitine processes were deliberately engineered away from GABOB on cost grounds</li>
+          <li>Market may be only a few hundred kg/yr worldwide &mdash; too small to matter to P&amp;L even if we win all of it</li>
+          <li>Downstream margin collapse (NEPG 38.6% &rarr; 21.4%) and Lonza&rsquo;s cancelled Swiss FID signal a chain under price stress</li>
+          <li>Chinese supply concentration plus environmental enforcement risk (NEPG RMB 4.28 M fine) threatens continuity</li>
+          <li>(S)-enantiomer co-product has no ready outlet if we ever resolve racemate ourselves</li>
+          <li>Catalogue incumbents can price-match instantly on a product with no IP moat</li>
+          <li>Reputational/legal risk if any buyer diverts research-grade material toward human use</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>9B &mdash; Porter&rsquo;s Five Forces</h3>
+    <div class="forces">
+      <div class="force hi">
+        <div class="fn">Competitive Rivalry &mdash; <span class="tag t-hi">HIGH</span></div>
+        <div class="ft">A dozen catalogue houses already list the (R) isomer with overlapping pack sizes and no differentiation beyond price and lead time. No patent protection on the molecule. Price dispersion of 11&times; for the same nominal grade is the signature of undisciplined rivalry.</div>
+      </div>
+      <div class="force lo">
+        <div class="fn">Threat of New Entrants &mdash; <span class="tag t-lo">LOW</span></div>
+        <div class="ft">Not because barriers are high, but because the prize is too small to attract anyone new. The real risk is an existing player extending its ladder, not a new competitor appearing.</div>
+      </div>
+      <div class="force hi">
+        <div class="fn">Supplier Power &mdash; <span class="tag t-hi">HIGH</span></div>
+        <div class="ft">All kg-scale supply traced to Chinese traders with undisclosed manufacturing, unpublished prices and unverified purity claims. We would be a small buyer with no leverage and no second region of supply.</div>
+      </div>
+      <div class="force md">
+        <div class="fn">Buyer Power &mdash; <span class="tag t-md">MEDIUM</span></div>
+        <div class="ft">Research buyers are price-insensitive at gram scale and value speed and documentation &mdash; favourable. But they are few, concentrated in a handful of CROs/CDMOs, and any one of them can import directly.</div>
+      </div>
+      <div class="force hi">
+        <div class="fn">Threat of Substitutes &mdash; <span class="tag t-hi">HIGH</span></div>
+        <div class="ft"><b>The decisive force.</b> Substitution has already happened at industrial scale: halo-alkoxybutenoate + glycine routes replaced GABOB in oxiracetam; asymmetric reduction and fermentation routes replaced it in carnitine. Cheap racemate substitutes wherever chirality is not essential.</div>
+      </div>
+      <div class="force md">
+        <div class="fn">Overall Attractiveness &mdash; <span class="tag t-md">LOW TO MODERATE</span></div>
+        <div class="ft">Unattractive as a product line; defensible only as a <b>catalogue item inside a broader chiral-synthon and reference-standard portfolio</b>, where fixed costs are already carried by other SKUs.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>9C &mdash; Value Chain Participation</h3>
+    <div class="vchain">
+      <div class="vstep">Raw Material</div>
+      <div class="vstep">Synthesis</div>
+      <div class="vstep on">Sourcing / Import</div>
+      <div class="vstep on">Quality Testing</div>
+      <div class="vstep on">Distribution</div>
+      <div class="vstep on">Export</div>
+      <div class="vstep on">End Customer</div>
+    </div>
+    <table>
+      <thead><tr><th style="width:17%">Stage</th><th style="width:13%">Our participation</th><th>Opportunity</th><th style="width:17%">Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>Raw material</td><td><span class="tag t-hi">No</span></td><td>No reason to back-integrate into C4 halohydrins for a sub-US$1 M market</td><td>Not planned</td></tr>
+        <tr><td>Synthesis</td><td><span class="tag t-hi">No</span></td><td>Deferred. Reopen only against a CSIR licence plus a named anchor customer with &ge;1 MT/yr pull</td><td>Review at Month 18&ndash;24</td></tr>
+        <tr><td>Sourcing / import</td><td><span class="tag t-lo">Yes</span></td><td>Dual-vendor qualification (one Chinese kg-capable, one Western catalogue house for small packs); exploit 11&times; price dispersion through a formal RFQ</td><td>Month 1&ndash;3</td></tr>
+        <tr><td>Quality testing</td><td><span class="tag t-lo">Yes</span></td><td><b>The real differentiator.</b> Validated chiral-HPLC ee method, ideally with Daicel Chiral Technologies India; issue ee-certified CoAs that catalogue competitors do not provide</td><td>Month 2&ndash;5</td></tr>
+        <tr><td>Distribution</td><td><span class="tag t-lo">Yes</span></td><td>Hold small Indian stock (10 mg&ndash;5 g packs) to beat the prevailing 4&ndash;6 week import wait; settle the cold-chain question first</td><td>Month 3&ndash;6</td></tr>
+        <tr><td>Export</td><td><span class="tag t-md">Selective</span></td><td>Only re-export of ee-certified repacked material to South/South-East Asian CROs; no licence barrier identified but thin margins</td><td>Month 9&ndash;15</td></tr>
+        <tr><td>End customer</td><td><span class="tag t-lo">Yes</span></td><td>Direct technical selling into CRO/CDMO medicinal-chemistry and analytical groups; bundle with other chiral synthons and impurity standards</td><td>Month 1&ndash;6</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s10" class="report-section">
+  <div class="sec-head"><div class="sec-num">10</div><h2>Feasibility Summary &amp; Management Recommendation</h2></div>
+  <div class="verdict">
+    <div class="vt">OVERALL VERDICT</div>
+    <div class="vv">CONDITIONAL &mdash; PROCEED AS A PORTFOLIO SKU, NOT AS A PRODUCT LINE</div>
+    <div class="vd">(R)-GABOB is a legitimate, freely importable, high-unit-margin chiral synthon with a <b>~30&times; price premium</b> over its racemate and <b>no Indian domestic supplier</b> &mdash; but the global merchant market is almost certainly under US$1 M/yr, and the patent record shows the two largest downstream applications were deliberately re-engineered <i>away</i> from GABOB on cost grounds. <b>Approve it as a catalogue line item inside a chiral-synthon and reference-standard portfolio where fixed costs are already carried. Do not approve dedicated manufacturing, dedicated inventory beyond small packs, or any business case that assumes this product scales.</b></div>
+  </div>
+  <div class="card">
+    <h3>10A &mdash; Recommendation by Business Mode</h3>
+    <table>
+      <thead><tr><th style="width:20%">Business mode</th><th style="width:16%">Recommendation</th><th>Rationale</th></tr></thead>
+      <tbody>
+        <tr><td><b>Sourcing &amp; Marketing</b></td><td><span class="tag t-lo">RECOMMENDED</span></td><td>Zero Indian supply, 11&times; observable price dispersion to arbitrage, and buyers who pay for speed and paperwork rather than price. Asset-light, fast to test, no licence barrier</td></tr>
+        <tr><td><b>CRO / R&amp;D Support</b></td><td><span class="tag t-lo">RECOMMENDED</span></td><td>Highest-value play. Sell ee-certified material plus the chiral analytical service around it. The Nov-2024 FDA D-carnitine enantiomeric-purity action is live, documented demand for precisely this competence</td></tr>
+        <tr><td><b>Import &amp; Domestic Trading</b></td><td><span class="tag t-md">CONDITIONAL</span></td><td>Proceed only against confirmed purchase orders or very small consolidated stock (10 mg&ndash;5 g). Below ~US$2,500 landed value per consignment the economics invert. Settle the storage-temperature conflict before stocking anything</td></tr>
+        <tr><td><b>Export</b></td><td><span class="tag t-md">CONDITIONAL</span></td><td>No licence barrier identified and SCOMET screening is routine, but we would be re-exporting Chinese material at thin margins. Pursue only for ee-certified repacks to regional CROs, after the domestic offer is proven</td></tr>
+        <tr><td><b>Manufacturing</b></td><td><span class="tag t-hi">NOT RECOMMENDED</span></td><td>Addressable market smaller than plant depreciation; structural substitution already complete downstream; Lonza cancelled new capacity in the adjacent chain on ROI grounds; (S) co-product has no outlet. Reopen only with a CSIR process licence <b>and</b> a contracted anchor offtake of &ge;1 MT/yr</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>10B &mdash; Key Risks &amp; Mitigation</h3>
+    <table>
+      <thead><tr><th style="width:24%">Risk</th><th style="width:11%">Level</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td><b>Market-size risk</b> &mdash; true demand may be a few tens of kg/yr, far below any threshold that matters</td><td><span class="tag t-hi">HIGH</span></td><td>Cap total exposure. Run a 6-month, sub-US$25k pilot with no dedicated headcount; kill or continue on observed reorder rate, not on forecast</td></tr>
+        <tr><td><b>Structural substitution</b> &mdash; downstream chemistry already designed GABOB out</td><td><span class="tag t-hi">HIGH</span></td><td>Accept it. Position exclusively against research/reference/synthon demand. Never build a case on carnitine or oxiracetam tonnage</td></tr>
+        <tr><td><b>Supplier verification</b> &mdash; all kg offers are traders with unverified purity and no disclosed plant</td><td><span class="tag t-hi">HIGH</span></td><td>No PO without sample + full CoA + chiral-HPLC ee data verified by us or Daicel. Qualify two vendors in different jurisdictions before first customer commitment</td></tr>
+        <tr><td><b>Enantiomeric-purity failure</b> &mdash; selling (R) material that fails ee on the customer&rsquo;s method</td><td><span class="tag t-hi">HIGH</span></td><td>Build or outsource a validated chiral method <b>before</b> first sale. The FDA D-carnitine case shows what regulatory exposure looks like in this family. State the method and limit on every CoA</td></tr>
+        <tr><td><b>Diversion / misuse</b> &mdash; research-grade CNS-active material sold for human use</td><td><span class="tag t-md">MEDIUM</span></td><td><b>Non-negotiable control.</b> Research-use-only declaration on quotation, invoice, label and CoA; institutional/corporate buyers only; refuse any order indicating human consumption; retain written end-use declarations</td></tr>
+        <tr><td><b>Customs classification</b> &mdash; 2922.50 vs 2922.49 split even among vendors</td><td><span class="tag t-md">MEDIUM</span></td><td>Obtain a CAAR advance ruling or written classification opinion before the first commercial consignment; keep HSN consistent across purchase and sale invoices</td></tr>
+        <tr><td><b>Cold-chain / storage ambiguity</b> &mdash; &ndash;20 &deg;C vs ambient &lt;15 &deg;C vendor conflict</td><td><span class="tag t-md">MEDIUM</span></td><td>Obtain written storage and stability data from the chosen vendor; price freight to the stricter condition until resolved; do not stock before resolution</td></tr>
+        <tr><td><b>China single-region dependence</b> &mdash; environmental and enforcement interruption risk</td><td><span class="tag t-md">MEDIUM</span></td><td>Mandatory dual-vendor policy across two jurisdictions; keep a Western catalogue house qualified for emergency small-pack cover</td></tr>
+        <tr><td><b>Isomer / CAS confusion</b> &mdash; multiple registry numbers and near-identical positional isomers in the same catalogues</td><td><span class="tag t-md">MEDIUM</span></td><td>Order and invoice on CAS + InChIKey + optical rotation together, never on name alone. See Data-Quality Flags</td></tr>
+        <tr><td><b>Price erosion</b> &mdash; no IP moat; incumbents can match instantly</td><td><span class="tag t-lo">LOW&ndash;MED</span></td><td>Compete on service and certification, not price. Do not chase volume at declining margin</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>10C &mdash; Next Steps</h3>
+    <ol class="steps">
+      <li><b>Validate real demand before spending on supply (Month 1&ndash;2).</b> Structured calls with eight to ten Indian accounts &mdash; Syngene, Hikal, Jubilant Biosys, Embio, Syntho Chirals, Darshan Pharmachem, Shilpa CDMO, plus two academic neuroscience groups. One question decides the project: what quantity of (R)-GABOB did you buy in the last 24 months, at what price, with what lead time? If aggregate answers are under a few hundred grams, stop here.</li>
+      <li><b>Run a formal two-jurisdiction RFQ (Month 1&ndash;3).</b> Quote 5 g, 25 g, 100 g and 1 kg from Capot, Shanghai Daken, CONIER and LEAP Chem, plus ACHEMBLOCK and Biosynth for small packs. Demand purity method, ee value and method, storage and stability data, and lead time in writing. Target landed cost materially below the observed US$54/g floor at 25 g.</li>
+      <li><b>Settle the two technical unknowns (Month 2&ndash;4).</b> Written vendor confirmation of storage temperature and stability (resolving the &ndash;20 &deg;C vs &lt;15 &deg;C conflict), and a CAAR classification opinion on 2922.50.90 vs 2922.49.90. Both are cheap and both are blockers to stocking.</li>
+      <li><b>Build the ee-certification capability (Month 2&ndash;5).</b> Engage Daicel Chiral Technologies India to develop and validate a chiral-HPLC method for underivatised (R)-GABOB. This is the differentiator the catalogue competition does not offer and the direct answer to the FDA D-carnitine precedent.</li>
+      <li><b>Pilot sell against confirmed orders only (Month 3&ndash;6).</b> No speculative inventory beyond a small consolidated 10 mg&ndash;5 g holding. Offer ee-certified material with a two-week delivery promise against the market&rsquo;s 4&ndash;6 weeks. Bundle with other chiral synthons and impurity standards so no single SKU carries fixed cost. Hard cap: under US$25k total committed capital.</li>
+      <li><b>Decision gate and strategic review (Month 6&ndash;9, then re-test every 18&ndash;24 months).</b> Continue only on demonstrated reorders from at least three distinct accounts. Separately, open an exploratory technology-licensing conversation with CSIR on US 7,374,926 / US 7,816,119 &mdash; not to manufacture GABOB, but to evaluate the <b>shared chiral C4 intermediate serving both (R)-GABOB and (R)-carnitine</b>, which is the only configuration in which manufacturing could ever make sense. Re-test the manufacturing verdict as biocatalysis costs fall.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="sqa" class="report-section">
+  <div class="sec-head"><div class="sec-num">&#9888;</div><h2>Data-Quality Flags &amp; Research Limitations</h2></div>
+  <div class="card">
+    <p>Flagged so that management discounts these points appropriately rather than treating every figure as equally firm.</p>
+    <table>
+      <thead><tr><th style="width:26%">Flag</th><th>Detail &amp; required action</th></tr></thead>
+      <tbody>
+        <tr><td><b>CAS number collisions</b></td><td>Four registry numbers circulate for this molecule family: 7013-07-2 (R), 924-49-2 (racemate/DL), 352-21-6 (listed against GABOB by KEGG C03678, isomer assignment <b>unverified</b>), and 206-518-5 / 213-106-9 as two different EINECS entries appearing in PharmaCompass synonym lists. One Cayman page shows CAS 7013-07-2 while a related page in the same search showed 7013-07-2 rendered as &ldquo;7013-07-9&rdquo; in a query &mdash; always order on CAS + InChIKey + optical rotation together.</td></tr>
+        <tr><td><b>Name/isomer mislabelling in vendor data</b></td><td>ChemicalBook lists both &ldquo;(R)-(&ndash;)-4-AMINO-3-HYDROXYBUTANOIC ACID&rdquo; and &ldquo;(R)-(+)-4-AMINO-3-HYDROXYBUTANOIC ACID&rdquo; as synonyms of the same entry &mdash; internally contradictory on sign of rotation. Separately, (R)-GABOB is widely sold as &ldquo;L-&gamma;-amino-&beta;-hydroxybutyric acid&rdquo;; the L/R prefix mixing is a known ordering-error source. Fisher&rsquo;s CAS 924-49-2 page displays an <b>(3S)</b> IUPAC name and an (S)-specific InChIKey for what is the racemate CAS.</td></tr>
+        <tr><td><b>Storage-condition conflict</b></td><td>&ndash;20 &deg;C (Cayman) vs room temperature / cool &amp; dark &lt;15 &deg;C (TCI) vs dark, inert atmosphere, RT (ChemicalBook). Materially changes freight cost. Unresolved &mdash; obtain written stability data.</td></tr>
+        <tr><td><b>Predicted vs measured properties</b></td><td>Boiling point, density and pKa are all <b>computational predictions</b>, not measurements, and the compound decomposes at its melting point so the predicted bp is physically meaningless. Flash point and vapour pressure were not located at all.</td></tr>
+        <tr><td><b>Market size &mdash; no primary source</b></td><td>There is <b>no</b> published market report on GABOB in any isomeric form. The sub-US$1 M/yr figure is an MI proxy estimate from catalogue vendor count, pack sizes and quoted lead times. <b>Low confidence.</b> Carnitine and oxiracetam figures are adjacent markets quoted for context only, and themselves disagree (L-carnitine 2025: US$226&ndash;312 M across six houses).</td></tr>
+        <tr><td><b>Bulk pricing unverified</b></td><td>No published price exists above 25 g. The US$3,000&ndash;12,000/kg band is an MI extrapolation with a wide error margin. The ChemicalBook listings showing US$15/kg and US$10/tonne for &ldquo;3-Hydroxy-4-amino-butyric acid&rdquo; appear on a template page shared with unrelated products at identical prices and were <b>disregarded as unreliable</b>.</td></tr>
+        <tr><td><b>Regulatory items not confirmed</b></td><td>TSCA inventory status, REACH registration status, China IECSC listing, Japan ENCS number, India CPCB listing and absence of Indian CDSCO approval are all <b>not confirmed</b> in this research. Each requires a primary-register check before reliance.</td></tr>
+        <tr><td><b>Manufacturer identity unverified</b></td><td>Every kilogram-scale (R) supplier located is explicitly flagged &ldquo;Trader&rdquo; in the source directory. No primary manufacturer of the (R) isomer was identified anywhere in the world.</td></tr>
+        <tr><td><b>Adjacent-entity confusion avoided</b></td><td>EU veterinary records for &ldquo;Gabbrovet&rdquo; (ATCvet QA07AA06) surfaced during research but relate to paromomycin, not GABOB, and were excluded. Similarly, PharmaCompass&rsquo;s &ldquo;Bogil&rdquo; page is a GABOB brand synonym, not a separate molecule.</td></tr>
+        <tr><td><b>Pharmacology from tertiary sources</b></td><td>Receptor-potency and anticonvulsant-ratio statements derive from an encyclopedia entry and vendor datasheets citing primary literature (Hayashi 1959; Chemello et al. 1980; Colombo 2017). Adequate for commercial sizing; <b>not</b> adequate for any scientific or regulatory submission.</td></tr>
+        <tr><td><b>Mode &amp; scope</b></td><td>MODE A &mdash; product name only. No trade data file or Google Sheet was supplied, so Part B / Section 11 trade-data analysis is not applicable and has not been generated. Import/export volumes, shipment counts, supplier-buyer concentration and year-wise trade trends are therefore <b>absent by design</b>, not omitted in error.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sref" class="report-section">
+  <div class="sec-head"><div class="sec-num">&#9733;</div><h2>Sources &amp; References</h2></div>
+  <div class="card">
+    <ol class="refs">
+      <li>&gamma;-Amino-&beta;-hydroxybutyric acid &mdash; Wikipedia (citing Index Nominum 2000; Cooper, Bloom &amp; Roth, <i>The Biochemical Basis of Neuropharmacology</i>; Hayashi 1959; Colombo 2017) &mdash; <a href="https://en.wikipedia.org/wiki/%CE%93-Amino-%CE%B2-hydroxybutyric_acid" target="_blank">en.wikipedia.org/wiki/&Gamma;-Amino-&beta;-hydroxybutyric_acid</a></li>
+      <li>GABOB overview &amp; brand names &mdash; Wikiwand &mdash; <a href="https://www.wikiwand.com/en/articles/GABOB" target="_blank">wikiwand.com/en/articles/GABOB</a></li>
+      <li>(R)-4-Amino-3-hydroxybutyric Acid, item 31532 &mdash; Cayman Chemical &mdash; <a href="https://www.caymanchem.com/product/31532/r-4-amino-3-hydroxybutyric-acid" target="_blank">caymanchem.com/product/31532</a></li>
+      <li>Product insert, item 31532 (FW, purity, storage, stability) &mdash; Cayman Chemical &mdash; <a href="https://cdn.caymanchem.com/cdn/insert/31532.pdf" target="_blank">cdn.caymanchem.com/cdn/insert/31532.pdf</a></li>
+      <li>CAS 7013-07-2 properties &amp; GHS &mdash; ChemicalBook &mdash; <a href="https://www.chemicalbook.com/CASEN_7013-07-2.htm" target="_blank">chemicalbook.com/CASEN_7013-07-2.htm</a></li>
+      <li>CAS 7013-07-2 price board (36 price points, US$37&ndash;1,350) &mdash; ChemicalBook &mdash; <a href="https://m.chemicalbook.com/Price/7013-07-2.htm" target="_blank">m.chemicalbook.com/Price/7013-07-2.htm</a></li>
+      <li>CAS 7013-07-2 price range US$14&ndash;2,208.45 (aablocks, ACHEMBLOCK) &mdash; ChemicalBook &mdash; <a href="https://www.chemicalbook.com/Price/7013-07-2.htm" target="_blank">chemicalbook.com/Price/7013-07-2.htm</a></li>
+      <li>(R) isomer supplier directory (Capot, Shanghai Daken, CONIER, LEAP Chem) &mdash; ChemicalBook &mdash; <a href="https://m.chemicalbook.com/Manufacturers/r-amino-3-hydroxybutanoic-acid.htm" target="_blank">m.chemicalbook.com/Manufacturers</a></li>
+      <li>(R) isomer uses &amp; Biosynth/ACC pricing &mdash; ChemicalBook &mdash; <a href="https://amp.chemicalbook.com/ChemicalProductProperty_EN_CB6734941.htm" target="_blank">amp.chemicalbook.com/CB6734941</a></li>
+      <li>CAS 924-49-2 (racemate) identity, synonyms, EINECS 213-106-9, LogP &mdash; ChemicalBook &mdash; <a href="https://www.chemicalbook.com/CASEN_924-49-2.htm" target="_blank">chemicalbook.com/CASEN_924-49-2.htm</a></li>
+      <li>CAS 924-49-2 manufacturer list (Amity Chem 25 kg/drum) &mdash; ChemicalBook &mdash; <a href="https://www.chemicalbook.com/ProdSupplierGNCB2497354_EN.htm" target="_blank">chemicalbook.com/ProdSupplierGNCB2497354</a></li>
+      <li>India supplier list, DL-4-amino-3-hydroxybutyric acid &mdash; ChemicalBook &mdash; <a href="https://chemicalbook.com/Manufacturers-india/dl-4-amino-3-hydroxybutyric-acid.htm" target="_blank">chemicalbook.com/Manufacturers-india</a></li>
+      <li>(R)-4-Amino-3-hydroxybutyric Acid T85014 (GABA<sub>A</sub>/GABA<sub>B</sub> binding, reuptake block, pricing) &mdash; TargetMol &mdash; <a href="https://www.targetmol.com/compound/_r_4_amino_3_hydroxybutyric_acid" target="_blank">targetmol.com</a></li>
+      <li>EBC-04387, (R)-4-amino-3-hydroxybutanoic acid, 95% &mdash; Enamine &mdash; <a href="https://ebc.enamine.net/molecule-product/EBC-04387" target="_blank">ebc.enamine.net/molecule-product/EBC-04387</a></li>
+      <li>CAY31532-50 mg pricing &amp; synonyms &mdash; Bioscience (UK) &mdash; <a href="https://bioscience.co.uk/product~1039266" target="_blank">bioscience.co.uk/product~1039266</a></li>
+      <li>TGM-T85014 (R) isomer, lead time &mdash; Biomol &mdash; <a href="https://www.biomol.com/products/chemicals/biochemicals/r-4-amino-3-hydroxybutyric-acid-tgm-t85014-10mg" target="_blank">biomol.com</a></li>
+      <li>4-Amino-3-hydroxybutyric Acid A0318 &mdash; TCI India (&#8377;2,600/5 g) &mdash; <a href="https://www.tcichemicals.com/IN/en/p/A0318" target="_blank">tcichemicals.com/IN/en/p/A0318</a></li>
+      <li>A0318 US pricing (US$17/5 g, US$43/25 g), storage, Reaxys, RTECS &mdash; TCI America &mdash; <a href="https://www.tcichemicals.com/US/en/p/A0318" target="_blank">tcichemicals.com/US/en/p/A0318</a></li>
+      <li>A0318 EU pricing &amp; HS 2922500090, P-statements &mdash; TCI Switzerland &mdash; <a href="https://tcichemicals.com/CH/en/p/A0318" target="_blank">tcichemicals.com/CH/en/p/A0318</a></li>
+      <li>A0318 HS 2922.49.4950 declaration &mdash; TCI Canada &mdash; <a href="https://www.tcichemicals.com/CA/en/p/A0318" target="_blank">tcichemicals.com/CA/en/p/A0318</a></li>
+      <li>CAS 924-49-2 suppliers, Thermo Scientific H-statements &amp; HTS 2922.50 &mdash; Thomas Scientific &mdash; <a href="https://thomassci.com/nav/casnumber/924492/categories/supplies/0" target="_blank">thomassci.com</a></li>
+      <li>CAS 924-49-2 synonyms, PubChem CID 2149, ChEBI 16080 &mdash; Fisher Scientific &mdash; <a href="https://www.fishersci.com/shop/products/4-amino-3-hydroxybutyric-acid-tci-america-2/A03185G" target="_blank">fishersci.com</a></li>
+      <li>4-Amino-3-Hydroxybutyric Acid &mdash; identifiers, UNII 1ZHM019FLD, MeSH isomer synonyms &mdash; PharmaCompass &mdash; <a href="https://pharmacompass.com/price/4-amino-3-hydroxybutyric-acid" target="_blank">pharmacompass.com/price</a></li>
+      <li>Gamibetal marketing authorisation records (SIT Laboratorio Farmaceutico Srl, Italy; 500 mg tablets; 10% syrup; diazepam combination) and API reference price US$3,438/kg &mdash; PharmaCompass &mdash; <a href="https://pharmacompass.com/eu-ctd-dossier-marketing-authorisation/4-amino-3-hydroxybutyric-acid" target="_blank">pharmacompass.com/eu-ctd-dossier</a></li>
+      <li>Gamibetal research description &mdash; MedChemExpress &mdash; <a href="https://www.medchemexpress.com/gamibetal.html" target="_blank">medchemexpress.com/gamibetal.html</a></li>
+      <li>KEGG COMPOUND C03678 (GABOB; CAS 352-21-6; drug D00174) &mdash; <a href="https://www.kegg.jp/entry/C03678" target="_blank">kegg.jp/entry/C03678</a></li>
+      <li>CHEBI:16080 &gamma;-amino-&beta;-hydroxybutyric acid &mdash; carnitinium relationship &mdash; EMBL-EBI &mdash; <a href="https://www.ebi.ac.uk/chebi/CHEBI:16080" target="_blank">ebi.ac.uk/chebi/CHEBI:16080</a></li>
+      <li>CLP notified classification, (2S)-4-amino-2-hydroxybutanoic acid (EC 670-305-7) &mdash; ECHA C&amp;L Inventory &mdash; <a href="https://echa.europa.eu/et/information-on-chemicals/cl-inventory-database/-/discli/substance/external/100.196.040" target="_blank">echa.europa.eu</a></li>
+      <li>SDS, 4-Amino-3-hydroxybutyric Acid (GHS Rev. 6) &mdash; LookChem &mdash; <a href="https://www.lookchem.com/sds924-49-2.html" target="_blank">lookchem.com/sds924-49-2.html</a></li>
+      <li>US 7,374,926 &mdash; Enantioconvergent chemoenzymatic synthesis of (R)-GABOB (CSIR); states (R)-GABOB is a precursor for (R)-carnitine &mdash; <a href="https://patents.justia.com/patent/7374926" target="_blank">patents.justia.com/patent/7374926</a></li>
+      <li>US 7,374,926 full text &mdash; prior-art route families (resolution, chiral pool, catalytic asymmetric, enzymatic) &mdash; USPTO &mdash; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7374926" target="_blank">image-ppubs.uspto.gov</a></li>
+      <li>US 7,816,119 &mdash; Chemoenzymatic process for (R)-GABOB or (R)-carnitine from 3,4-dihydroxybutanenitrile (CSIR) &mdash; <a href="https://patents.google.com/patent/US7816119" target="_blank">patents.google.com/patent/US7816119</a></li>
+      <li>US 7,816,119 full text &mdash; shared chiral building block for both targets &mdash; USPTO &mdash; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7816119" target="_blank">image-ppubs.uspto.gov</a></li>
+      <li>US 6,114,566 &mdash; 4-cyano-3-hydroxybutanoyl hydrazines; medical significance of L-carnitine and GABOB &mdash; USPTO &mdash; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6114566" target="_blank">image-ppubs.uspto.gov</a></li>
+      <li>OSTI 873220 &mdash; bibliography of short practical syntheses of (R)-carnitine and (R)-GABOB, incl. asymmetric epoxidation of homoallylic alcohols (1984) &mdash; <a href="https://www.osti.gov/biblio/873220" target="_blank">osti.gov/biblio/873220</a></li>
+      <li>US 6,566,552 &mdash; Industrial process for L-carnitine; state of the art on resolution, microbiological and asymmetric-reduction routes &mdash; USPTO &mdash; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6566552" target="_blank">image-ppubs.uspto.gov</a></li>
+      <li>US 6,316,667 &mdash; Process for R-(&ndash;)-carnitine; S-(+)-carnitine as competitive inhibitor &mdash; <a href="https://patents.google.com/patent/US6316667" target="_blank">patents.google.com/patent/US6316667</a></li>
+      <li>EP 0 154 490 B1 &mdash; known pyrrolidinone processes start from &gamma;-amino-&beta;-hydroxybutyric acid (GB 1588074 / GB 1588075) &mdash; EPO &mdash; <a href="https://data.epo.org/publication-server/rest/v1.2/patents/EP0154490NWB1/document.xml" target="_blank">data.epo.org</a></li>
+      <li>US 4,629,797 &mdash; alternative oxiracetam process using starting materials available at economically interesting costs &mdash; USPTO &mdash; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4629797" target="_blank">image-ppubs.uspto.gov</a></li>
+      <li>US 5,371,237 &mdash; industrial-scale 4-hydroxy-2-oxopyrrolidin-1-yl-acetamide (oxiracetam) process from halo-alkoxybutenoate + glycine &mdash; <a href="https://patents.google.com/patent/US5371237" target="_blank">patents.google.com/patent/US5371237</a></li>
+      <li>US 5,276,164 &mdash; related oxiracetam process &mdash; <a href="https://patents.google.com/patent/US5276164A/enExample" target="_blank">patents.google.com/patent/US5276164A</a></li>
+      <li>EP 0 829 472 A1 &mdash; improved 4-hydroxy-2-pyrrolidone process; lists GABOB and optically active GABOB routes as prior art &mdash; EPO &mdash; <a href="https://data.epo.org/publication-server/rest/v1.2/patents/EP0829472NWA1/document.pdf" target="_blank">data.epo.org</a></li>
+      <li>GB 1588074 A &mdash; Process for the preparation of 4-hydroxy-pyrrolidin-2-one derivatives &mdash; <a href="https://patents.google.com/patent/GB1588074A/enExample" target="_blank">patents.google.com/patent/GB1588074A</a></li>
+      <li>(R)-(+)-4-Hydroxy-2-pyrrolidinone &ge;97% &mdash; stated as oxiracetam intermediate and chiral intermediate for single-isomer drugs &mdash; Thermo Scientific / Fisher &mdash; <a href="https://www.fishersci.com/shop/products/r-4-hydroxy-2-pyrrolidinone-97-4/AAH66006MD" target="_blank">fishersci.com</a></li>
+      <li>Luo et al., &ldquo;Enhancing the biocatalytic manufacture of the key intermediate of atorvastatin by focused directed evolution of halohydrin dehalogenase&rdquo;, <i>Sci Rep</i> 2017, DOI 10.1038/srep42064 &mdash; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5292711/" target="_blank">ncbi.nlm.nih.gov/pmc/articles/PMC5292711</a></li>
+      <li>Wang et al., &ldquo;Biocatalytic kinetic resolution for efficient and enantioselective synthesis of &delta;-haloalcohols and tetrahydrofurans&rdquo;, <i>Communications Chemistry</i>, Nov 2025 &mdash; <a href="https://doaj.org/article/3f33df4ae19f46fd9ce23b8de1333700" target="_blank">doaj.org</a></li>
+      <li>US 8,580,555 &mdash; Recombinant halohydrin dehalogenase polypeptides &mdash; USPTO &mdash; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8580555" target="_blank">image-ppubs.uspto.gov</a></li>
+      <li>US 8,187,856 &mdash; Recombinant halohydrin dehalogenase polypeptides &mdash; USPTO &mdash; <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8187856" target="_blank">image-ppubs.uspto.gov</a></li>
+      <li>L-Carnitine Market Size, Share &amp; Industry Analysis 2026&ndash;2034 &mdash; Fortune Business Insights, Oct 2026 &mdash; <a href="https://www.fortunebusinessinsights.com/l-carnitine-market-117839" target="_blank">fortunebusinessinsights.com</a></li>
+      <li>L-carnitine Market Size To Reach $385.28 Million By 2033; key players list &mdash; Grand View Research, Feb 2026 &mdash; <a href="https://www.grandviewresearch.com/press-release/global-l-carnitine-market" target="_blank">grandviewresearch.com</a></li>
+      <li>L-carnitine market, US$257.61 M (2025) &rarr; US$334.32 M (2031) &mdash; TechSci Research &mdash; <a href="https://techsciresearch.com/report/l-carnitine-market/16386.html" target="_blank">techsciresearch.com</a></li>
+      <li>Global Carnitine market US$535.96 M (2025) &rarr; US$887.45 M (2032) &mdash; DIResearch via MarketResearch.com &mdash; <a href="https://www.marketresearch.com/Deep-Insights-Research-Co-DIR-v4285/Global-Carnitine-Research-Competitive-Technology-41803754" target="_blank">marketresearch.com</a></li>
+      <li>Global carnitine: top five hold nearly 70% share; producer list &mdash; QYResearch via Valuates &mdash; <a href="https://reports.valuates.com/market-reports/QYRE-Auto-13F10700/global-carnitine" target="_blank">reports.valuates.com</a></li>
+      <li>Global L-carnitine Market Research Report 2026: capacity utilisation ~70%, production growth 4.46% &mdash; QYResearch via Valuates &mdash; <a href="https://reports.valuates.com/market-reports/QYRE-Auto-25M354/global-l-carnitine" target="_blank">reports.valuates.com</a></li>
+      <li>L-carnitine industry events: NEPG margin 38.6%&rarr;21.4%, Lonza Swiss FID cancelled Feb 2025, FDA warning letter Nov 2024 on D-carnitine &gt;0.8% vs 0.15% limit, NEPG RMB 4.28 M fine Mar 2024 &mdash; pmarketresearch &mdash; <a href="https://pmarketresearch.com/worldwide-l-carnitine-market-research/" target="_blank">pmarketresearch.com</a></li>
+      <li>Global L-Carnitine Market Report: geopolitical realignment &amp; Chinese export concentration, Jun 2026 &mdash; Data Bridge Market Research &mdash; <a href="https://www.databridgemarketresearch.com/news/global-l-carnitine-market" target="_blank">databridgemarketresearch.com</a></li>
+      <li>Levocarnitine market &mdash; NEPG backward integration, Chinese API concentration &mdash; MarkWide Research &mdash; <a href="https://markwideresearch.com/levocarnitine-market" target="_blank">markwideresearch.com</a></li>
+      <li>Oxiracetam Market: US$187.4 M (2026) &rarr; US$338.77 M (2035), 6.8% CAGR; NMPA psychotropic classification &mdash; MarkWide Research &mdash; <a href="https://markwideresearch.com/oxiracetam-market" target="_blank">markwideresearch.com</a></li>
+      <li>Oxiracetam injection market &mdash; NMPA purity standards, GMP Annex 1 &mdash; MarkWide Research &mdash; <a href="https://markwideresearch.com/oxiracetam-injection-market" target="_blank">markwideresearch.com</a></li>
+      <li>Oxiracetam drugs market &mdash; China &asymp;9.0% of global share &mdash; Cognitive Market Research &mdash; <a href="https://www.cognitivemarketresearch.com/oxiracetam-drugs-market-report" target="_blank">cognitivemarketresearch.com</a></li>
+      <li>Investigation Report on China Oxiracetam Market &mdash; manufacturers incl. Harbin Medisan, Guangdong SENCEE &mdash; Market Publishers &mdash; <a href="https://marketpublishers.com/report/pharmaceuticals/drugs/investigation-report-on-china-oxiracetam-market-2010-2019.html" target="_blank">marketpublishers.com</a></li>
+      <li>Global Oxiracetam market &mdash; CSPC and Fuan Pharmaceutical named &mdash; APO Research via MarketResearch.com &mdash; <a href="https://www.marketresearch.com/APO-Research-Inc-v4273/Global-Oxiracetam-Size-Type-Application-42147831" target="_blank">marketresearch.com</a></li>
+      <li>India tariff, HS 29225090: BCD 7.5, IGST 18, SWS 0.75, total 27.735 &mdash; Treayo (ICEGATE-derived) &mdash; <a href="https://treayo.com/en/hs/india/29225090" target="_blank">treayo.com/en/hs/india/29225090</a></li>
+      <li>HSN 29224990 duty stack &asymp;28.47%, ITC-HS import policy notes &mdash; EximPe &mdash; <a href="https://eximpe.com/hsncode-finder/29224990" target="_blank">eximpe.com/hsncode-finder/29224990</a></li>
+      <li>HSN heading 2922 classification &amp; GST schedule &mdash; EximPe &mdash; <a href="https://eximpe.com/hsncode-finder/2922" target="_blank">eximpe.com/hsncode-finder/2922</a></li>
+      <li>Indian customs duty, heading 2922 tariff lines &mdash; Seair / EximGuru &mdash; <a href="https://www.seair.co.in/custom-duty/oxygen-function-amino-compounds-sub-heading-2922.aspx" target="_blank">seair.co.in</a></li>
+      <li>India import data, HS 2922: total 2025 import value US$844.06 M &mdash; TradeInt, Aug 2026 &mdash; <a href="https://www.tradeint.com/search/india/import-data/hs-code/2922/" target="_blank">tradeint.com</a></li>
+      <li>Lonza Makes Carnipure L-Carnitine Available for Direct Sales in India, May 2019 &mdash; Lonza &mdash; <a href="https://www.lonza.com/news/2019-05-28-13-00" target="_blank">lonza.com</a></li>
+      <li>Lonza Capsules &amp; Health Ingredients expands capacity in Rewari (India) and Suzhou, Dec 2024 &mdash; CHEManager &mdash; <a href="https://chemanager-online.com/en/news/lonza-capsules-health-ingredients-expands-capsule-manufacturing-capacity-in-india-and-china" target="_blank">chemanager-online.com</a></li>
+      <li>L-Carnitine Tartrate manufacturers &mdash; Indian suppliers (Gangwal, Lifecare, Anvitha, Beloorbayir) &mdash; PharmaCompass &mdash; <a href="https://www.pharmacompass.com/manufacturers-suppliers-exporters/l-carnitine-tartrate" target="_blank">pharmacompass.com</a></li>
+      <li>Hikal Annual Report 2025 &mdash; chiral chemistry, custom synthesis, gram-to-tonne scale &mdash; <a href="https://www.hikal.com/AnnualReports/2025/pdf/Hikal-AR2025_Pharmaceuticals.pdf" target="_blank">hikal.com</a></li>
+      <li>Hikal product list incl. piracetam and pregabalin &mdash; PharmaCompass &mdash; <a href="https://www.pharmacompass.com/api-manufacturers/hikal" target="_blank">pharmacompass.com/api-manufacturers/hikal</a></li>
+      <li>Jubilant Biosys CDMO services &mdash; multi-chiral-centre synthesis, chiral separations, building-block repository &mdash; <a href="https://www.jubilantbiosys.com/new-staging/?p=11104" target="_blank">jubilantbiosys.com</a></li>
+      <li>Embio Ltd &mdash; controlled substances, advanced intermediates and chiral molecules; Schedule-1 &amp; 2 licences &mdash; PharmaSource &mdash; <a href="https://pharmasource.global/directory/embio-ltd/" target="_blank">pharmasource.global/directory/embio-ltd</a></li>
+      <li>Darshan Pharmachem (P) Ltd &mdash; Ankleshwar; RCMH pregabalin chiral intermediate; ISO &amp; CDSCO &mdash; PharmaSource &mdash; <a href="https://pharmasource.global/directory/darshan-pharmachem-p-limited/" target="_blank">pharmasource.global</a></li>
+      <li>Syntho Chirals Private Limited &mdash; CDMO/CRO profile &mdash; CPHI Online &mdash; <a href="https://www.cphi-online.com/company/syntho-chirals-private-limited/" target="_blank">cphi-online.com</a></li>
+      <li>Daicel Chiral Technologies (India) Pvt Ltd &mdash; chiral separations &amp; method development &mdash; PharmaSource &mdash; <a href="https://pharmasource.global/directory/daicel-chiral-technologies-india-pvt-ltd" target="_blank">pharmasource.global</a></li>
+      <li>Syngene International &mdash; CDMO divisions &mdash; <a href="https://annualreport.syngeneintl.com/cdmo-divisions.html" target="_blank">annualreport.syngeneintl.com</a></li>
+      <li>&ldquo;Can India&rsquo;s CDMOs Lead the Next Biopharma Wave?&rdquo; &mdash; sector growing from US$3&ndash;3.5 B base, Mar 2026 &mdash; BioSpectrum India &mdash; <a href="https://biospectrumindia.com/article/pdf/27404" target="_blank">biospectrumindia.com</a></li>
+      <li>Shilpa CDMO launches at CPHI Milan, Sep 2026 &mdash; BioSpectrum India &mdash; <a href="https://www.biospectrumindia.com/article/pdf/28447" target="_blank">biospectrumindia.com</a></li>
+      <li>Akums Drugs &amp; Pharmaceuticals &mdash; CDMO and branded formulations &mdash; <a href="https://akums.in/?p=134" target="_blank">akums.in</a></li>
+      <li>Jubilant Ingrevia pharmaceuticals &mdash; high-purity intermediates and CDMO &mdash; <a href="https://jubilantingrevia.com/pharmaceuticals" target="_blank">jubilantingrevia.com</a></li>
+      <li>4-Amino-3-Hydroxybutanoic Acid, TRC-A611270, &gt;95% HPLC, neat &mdash; LGC Standards &mdash; <a href="https://lgcstandards.com/CA/en/p/TRC-A611270" target="_blank">lgcstandards.com</a></li>
+      <li>4-Amino-3-hydroxybutyric acid specification sheet &mdash; Parchem &mdash; <a href="https://parchem.com/api/get-pdf/4-amino-3-hydroxybutyric-acid-033280.pdf" target="_blank">parchem.com</a></li>
+      <li>CDEK active-ingredient history, GABOB synonym set &mdash; Washington University &mdash; <a href="https://cdek.wustl.edu/api/112026/" target="_blank">cdek.wustl.edu</a></li>
+      <li>KEGG DRUG D00058 &mdash; &gamma;-aminobutyric acid (JAN), ATC N03AG03, for parent-compound context &mdash; <a href="https://www.kegg.jp/entry/D00058" target="_blank">kegg.jp/entry/D00058</a></li>
+      <li>India tariff, HS 29221919 amino-alcohols &mdash; BCD 7.5, IGST 18 &mdash; Treayo &mdash; <a href="https://treayo.com/en/hs/india/29221919" target="_blank">treayo.com/en/hs/india/29221919</a></li>
+    </ol>
+  </div>
+</section>
+</div>
+<footer>
+  <div><b>Prepared by: Market Intelligence</b> &nbsp;|&nbsp; Report date: November 2026 &nbsp;|&nbsp; Report Type: Secondary Market Research &mdash; No Trade Data (MODE A)</div>
+  <div style="margin-top:8px"><b>CONFIDENTIAL &mdash; For Internal Management Use Only.</b> Based on publicly available secondary research as at November 2026. Market size estimates from third-party sources vary materially and are reproduced with their sources named. Items marked &ldquo;MI estimate&rdquo; are our own extrapolations with the proxy method stated. Not investment, legal, medical or financial advice. Regulatory positions marked &ldquo;not confirmed&rdquo; require verification against primary registers before reliance.</div>
+  <div style="margin-top:8px"><b>Research-use discipline:</b> (R)-GABOB is supplied by the market as a research chemical and chiral intermediate, labelled not for human or veterinary use. Any commercial activity must preserve that positioning in full.</div>
+  <div style="margin-top:8px"><b>To export as PDF:</b> open in Chrome &rarr; click &ldquo;&#11015; Download PDF&rdquo; in the sidebar (or File &rarr; Print) &rarr; set Destination to &ldquo;Save as PDF&rdquo; &rarr; enable &ldquo;Background graphics&rdquo; to preserve colours.</div>
+</footer>
+</main>
+<script>
+(function(){
+  var links = document.querySelectorAll('.nav-link');
+  var secs  = document.querySelectorAll('.report-section');
+  function setActive(id){
+    links.forEach(function(l){
+      l.classList.toggle('active', l.getAttribute('data-section') === id);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) setActive(e.target.id);
+      });
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    secs.forEach(function(s){ obs.observe(s); });
+  }
+  links.forEach(function(l){
+    l.addEventListener('click', function(){ setActive(l.getAttribute('data-section')); });
+  });
+  setActive('s01');
+})();
+</script>
+</body>
+</html>
